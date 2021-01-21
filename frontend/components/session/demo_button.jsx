@@ -16,7 +16,7 @@ export default class DemoButton extends React.Component {
 
     render(){
         return(
-            <button class="btn btn-highlighted wide"
+            <button className="btn btn-highlighted wide"
                 onClick={this.handleDemoLogin}>
                 {">> Login To Demo Account <<"}
             </button>

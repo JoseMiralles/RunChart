@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import SessionForm from "./session_form";
-import { signup } from "../../actions/session_actions";
+import { signup, clearSessionErrors } from "../../actions/session_actions";
 
 const ms = (state, ownProps) => {
     return {
@@ -16,7 +16,8 @@ const ms = (state, ownProps) => {
 
 const md = (dispatch) => {
     return {
-        processForm: (form) => dispatch(signup(form))
+        processForm: (form) => dispatch(signup(form)),
+        clearSessionErrors: () => dispatch(clearSessionErrors())
     }
 }
 

@@ -12,14 +12,14 @@ export default class NavBar extends React.Component {
     render(){
         return(
             <nav className="container">
-                <div class="left logo">
+                <div className="left logo">
                     RunChart
                 </div>
-                <div class="center">
+                <div className="center">
                     <Link to="/routes/new">Create Route</Link>
                     <Link to="/routes/find">Find Routes</Link>
                 </div>
-                <div class="right">
+                <div className="right">
                     <NavGreetingContainer/>
                 </div>
             </nav>

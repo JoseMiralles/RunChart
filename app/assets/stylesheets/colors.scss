@@ -1,8 +1,11 @@
 $main-color: #0D96D8;
-$highlighted-color: #426A5A;
 
 $light: white;
 $light-secondary: #F4F4F4;
 
 $dark: #212121;
 $dark-secondary: #5E615C;
+
+$highlighted-color: $dark;
+
+$error: $dark-secondary;

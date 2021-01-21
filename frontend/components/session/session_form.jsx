@@ -10,13 +10,62 @@ export default class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    render() {
+        return (
+            <div className="session-form-page">
+                <div className="session-form-container">
+                    <h1>{this.props.formType}</h1>
+
+                    <hr></hr>
+
+                    {this.renderErrors()}
+
+                    <form onSubmit={this.handleSubmit}>
+
+                        <label htmlFor="form-username">Username:</label>
+                        <input id="form-username" type="text"
+                            placeholder="Username"
+                            //value={this.state.username}
+                            onChange={this.handleChange("username")}
+                        />
+
+                        <label htmlFor="form-password">Password:</label>
+                        <input id="form-password" type="password"
+                            placeholder="Password"
+                            //value={this.state.password}
+                            onChange={this.handleChange("password")}
+                        />
+
+                        {this.renderExtraFields()}
+
+                        <button className="btn btn-main wide" onClick={this.handleSubmit}>{this.props.formType}</button>
+
+                        <hr/>
+
+                        <DemoButtonContainer/>
+
+                    </form>
+
+                    <div className="toggle-link">
+                        {this.props.toggleLink}
+                    </div>
+
+                </div>
+            </div>
+        );
+    }
+
+    componentWillUnmount(){
+        this.props.clearSessionErrors();
+    }
+
     renderErrors(){
         if (this.props.errors.length){
             return(
                 <div className="errors-container">
-                    <ul>
-                        {this.renderErrors.map(error => 
-                            <li>{error}</li>
+                    <ul className="errors-list">
+                        {this.props.errors.map((error, i) => 
+                            <li key={i}>{error}</li>
                         )}
                     </ul>
                 </div>
@@ -64,51 +113,6 @@ export default class SessionForm extends React.Component {
                         onChange={this.handleChange("lastName")}
                     />
                 </>
-        );
-    }
-
-    render() {
-        return (
-            <div className="session-form-page">
-                <div className="session-form-container">
-                    <h1>{this.props.formType}</h1>
-
-                    <hr></hr>
-
-                    {this.renderErrors()}
-
-                    <form onSubmit={this.handleSubmit}>
-
-                        <label htmlFor="form-username">Username:</label>
-                        <input id="form-username" type="text"
-                            placeholder="Username"
-                            //value={this.state.username}
-                            onChange={this.handleChange("username")}
-                        />
-
-                        <label htmlFor="form-password">Password:</label>
-                        <input id="form-password" type="password"
-                            placeholder="Password"
-                            //value={this.state.password}
-                            onChange={this.handleChange("password")}
-                        />
-
-                        {this.renderExtraFields()}
-
-                        <button className="btn btn-main wide" onClick={this.handleSubmit}>{this.props.formType}</button>
-
-                        <hr/>
-
-                        <DemoButtonContainer/>
-
-                    </form>
-
-                    <div className="toggle-link">
-                        {this.props.toggleLink}
-                    </div>
-
-                </div>
-            </div>
         );
     }
 

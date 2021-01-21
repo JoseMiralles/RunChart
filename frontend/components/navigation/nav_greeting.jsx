@@ -26,7 +26,7 @@ export default class NavGreeting extends React.Component {
         return (
             <>
                 <span className="header-name">{this.props.currentUser.username}</span>
-                <button className="btn btn-main" onClick={this.props.logout}>LOGOUT</button>
+                <button className="btn btn-main" onClick={this.props.logout}>Logout</button>
             </>
         );
     }

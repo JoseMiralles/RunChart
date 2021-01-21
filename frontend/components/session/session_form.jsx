@@ -1,5 +1,7 @@
 import React from "react";
 
+import DemoButtonContainer from "../session/demo_button_container";
+
 export default class SessionForm extends React.Component {
 
     constructor(props){
@@ -94,6 +96,10 @@ export default class SessionForm extends React.Component {
                         {this.renderExtraFields()}
 
                         <button className="btn btn-main wide" onClick={this.handleSubmit}>{this.props.formType}</button>
+
+                        <hr/>
+
+                        <DemoButtonContainer/>
 
                     </form>
 

@@ -12,7 +12,7 @@ nav {
         color: $main-color;
         font-size: 25px;
         font-family: 'Bebas Neue', cursive;
-        letter-spacing: 10px;
+        letter-spacing: 7px;
     }
 
     a{
@@ -42,7 +42,6 @@ nav {
         display: flex;
         align-items: center; // Centers vertically
         justify-content: flex-end;
-        text-transform: uppercase;
         
         .header-name{
             margin-right: 20px;

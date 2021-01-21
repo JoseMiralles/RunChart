@@ -71,6 +71,8 @@ export default class SessionForm extends React.Component {
                 <div className="session-form-container">
                     <h1>{this.props.formType}</h1>
 
+                    <hr></hr>
+
                     {this.renderErrors()}
 
                     <form onSubmit={this.handleSubmit}>

@@ -13,15 +13,25 @@ input {
     width: -webkit-fill-available;
     padding: 12px 16px 12px;
     border: solid $dark-secondary 1px;
+
+    &:focus{
+        outline-color: $main-color;
+    }
 }
 
 h1 {
     font-size: 24px;
 }
 
+hr {
+    width: 100%;
+}
+
 .container {
     max-width: 980px;
     margin:auto;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .wide{

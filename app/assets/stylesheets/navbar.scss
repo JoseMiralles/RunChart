@@ -1,0 +1,52 @@
+nav {
+    display: flex;
+    justify-content: space-between; // Spaces horizontally
+    align-items: center; // Centers vertically
+    // justify-content: space-around; // Spaced and centered
+    // background: $dark;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 14px;
+
+    .logo{
+        color: $main-color;
+        font-size: 25px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 10px;
+    }
+
+    a{
+        color: $dark-secondary;
+    }
+
+    .left{
+        display: flex;
+        align-items: center; // Centers vertically
+        justify-content: flex-start;
+    }
+
+    // Center links
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center; // Centers vertically
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 16px;
+
+        a{
+            padding: 1.3rem;
+        }
+    }
+
+    .right{
+        display: flex;
+        align-items: center; // Centers vertically
+        justify-content: flex-end;
+        text-transform: uppercase;
+        
+        .header-name{
+            margin-right: 20px;
+        }
+    }
+
+}

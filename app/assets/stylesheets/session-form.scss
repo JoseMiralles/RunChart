@@ -1,0 +1,23 @@
+.session-form-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $light-secondary;
+    width: 100%;
+    height: 100%;
+}
+
+.session-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    
+    label{
+        display: none;
+    }
+
+    *{
+        margin-bottom: 15px;
+    }
+}

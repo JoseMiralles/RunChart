@@ -16,9 +16,8 @@ export default class NavGreeting extends React.Component {
     renderSessionLinks(){
         return (
             <>
-                <Link to="/login">Login</Link>
-                    &nbsp;or&nbsp;
-                <Link to="/signup">Signup</Link>
+                <Link className="btn" to="/login">Login</Link>
+                <Link className="btn btn-main" to="/signup">Signup</Link>
             </>
         );
     }
@@ -26,8 +25,8 @@ export default class NavGreeting extends React.Component {
     renderLogoutViews(){
         return (
             <>
-                <div className="header-name">{this.props.currentUser.username}</div>
-                <button className="header-button" onClick={this.props.logout}>logout</button>
+                <span className="header-name">{this.props.currentUser.username}</span>
+                <button className="btn btn-main" onClick={this.props.logout}>LOGOUT</button>
             </>
         );
     }

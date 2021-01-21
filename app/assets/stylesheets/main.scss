@@ -1,0 +1,42 @@
+html, body, main {
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    color: $dark;
+    background: $light;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+input {
+    width: -webkit-fill-available;
+    padding: 12px 16px 12px;
+    border: solid $dark-secondary 1px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.container {
+    max-width: 980px;
+    margin:auto;
+}
+
+.wide{
+    width: -webkit-fill-available;
+}
+
+.btn{
+    padding: 10px 16px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-main{
+    background-color: $main-color;
+    color: $light;
+}

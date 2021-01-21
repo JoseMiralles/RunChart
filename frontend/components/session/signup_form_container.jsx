@@ -9,7 +9,7 @@ const ms = (state, ownProps) => {
     return {
         errors: state.errors.session,
         formType: "Sign Up",
-        initialState: {username: "", email: "", password: "", first_name: "", last_name: ""},
+        initialState: {username: "", email: "", password: "", firstName: "", lastName: ""},
         toggleLink: <Link to="/login">Do you want to login instead?</Link>
     }
 }

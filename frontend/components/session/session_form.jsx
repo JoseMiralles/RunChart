@@ -38,61 +38,68 @@ export default class SessionForm extends React.Component {
     }
 
     // This returns the extra fields required by the "signup" form.
-    renderExtraFields(){
-        if (this.props.formType === "Sign Up") return(
-            <>
+    renderExtraFields() {
+        if (this.props.formType === "Sign Up") return (
+                <>
                     <label htmlFor="form-email">Email:</label>
                     <input id="form-email" type="email"
-                    //value={this.state.email}
-                    onChange={this.handleChange("email")}
+                        placeholder="Email"
+                        //value={this.state.email}
+                        onChange={this.handleChange("email")}
                     />
 
-                    <label htmlFor="form-first_name">First Name:</label>
-                    <input id="form-first_name" type="text"
-                    //value={this.state.first_name}
-                    onChange={this.handleChange("first_name")}
+                    <label htmlFor="form-firstName">First Name:</label>
+                    <input id="form-firstName" type="text"
+                        placeholder="First name"
+                        //value={this.state.firstName}
+                        onChange={this.handleChange("firstName")}
                     />
 
-                    <label htmlFor="form-last_name">Last Name:</label>
-                    <input id="form-last_name" type="text"
-                    //value={this.state.last_name}
-                    onChange={this.handleChange("last_name")}
+                    <label htmlFor="form-lastName">Last Name:</label>
+                    <input id="form-lastName" type="text"
+                        placeholder="Last name"
+                        //value={this.state.lastName}
+                        onChange={this.handleChange("lastName")}
                     />
-            </>
+                </>
         );
     }
 
-    render(){
-        return(
-            <div className="session-form-container">
-                <h3>{this.props.formType}</h3>
+    render() {
+        return (
+            <div className="session-form-page">
+                <div className="session-form-container">
+                    <h1>{this.props.formType}</h1>
 
-                { this.renderErrors() }
+                    {this.renderErrors()}
 
-                <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
 
-                    <label htmlFor="form-username">Username:</label>
-                    <input id="form-username" type="text"
-                    //value={this.state.username}
-                    onChange={this.handleChange("username")}
-                    />
+                        <label htmlFor="form-username">Username:</label>
+                        <input id="form-username" type="text"
+                            placeholder="Username"
+                            //value={this.state.username}
+                            onChange={this.handleChange("username")}
+                        />
 
-                    <label htmlFor="form-password">Password:</label>
-                    <input id="form-password" type="password"
-                    //value={this.state.password}
-                    onChange={this.handleChange("password")}
-                    />
+                        <label htmlFor="form-password">Password:</label>
+                        <input id="form-password" type="password"
+                            placeholder="Password"
+                            //value={this.state.password}
+                            onChange={this.handleChange("password")}
+                        />
 
-                    {this.renderExtraFields()}
+                        {this.renderExtraFields()}
 
-                    <button onClick={this.handleSubmit}>Submit</button>
+                        <button className="btn btn-main wide" onClick={this.handleSubmit}>{this.props.formType}</button>
 
-                </form>
+                    </form>
 
-                <div className="toggle-link">
-                    {this.props.toggleLink}
+                    <div className="toggle-link">
+                        {this.props.toggleLink}
+                    </div>
+
                 </div>
-
             </div>
         );
     }

@@ -23,7 +23,6 @@ export default class SessionForm extends React.Component {
     }
 
     handleSubmit(e){
-        debugger
         e.preventDefault();
         this.props.processForm(
             Object.assign({}, this.state)

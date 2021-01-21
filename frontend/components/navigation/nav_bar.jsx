@@ -12,8 +12,8 @@ export default class NavBar extends React.Component {
     render(){
         return(
             <nav className="container">
-                <div className="left logo">
-                    RunChart
+                <div className="left">
+                    <Link className="logo" to="/">RunChart</Link>
                 </div>
                 <div className="center">
                     <Link to="/routes/new">Create Route</Link>

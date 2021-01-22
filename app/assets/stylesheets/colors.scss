@@ -1,4 +1,5 @@
 $main-color: #0D96D8;
+$secondary: #E9DF00;
 
 $light: white;
 $light-secondary: #F4F4F4;
@@ -6,6 +7,6 @@ $light-secondary: #F4F4F4;
 $dark: #212121;
 $dark-secondary: #5E615C;
 
-$highlighted-color: $dark;
+$highlighted-color: $secondary;
 
 $error: $dark-secondary;

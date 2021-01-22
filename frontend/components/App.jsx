@@ -1,14 +1,17 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import NavBar from "./navigation/nav_bar";
 
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import HomeScreenContainer from "./home_screen/home_screen_container";
+import NavBar from "./navigation/nav_bar";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 
 const App = () => (
     <>
         <NavBar />
+
+        <Route exact path="/" component={HomeScreenContainer} />
 
         {/* Redirect user to home if they are already signed in. */}
         <AuthRoute exact path="/login" component={LoginFormContainer}/>

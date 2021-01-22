@@ -1,0 +1,79 @@
+.home-screen-container{
+    
+    h1{
+        font-size: 45px;
+        font-weight: 800;
+        padding-top: 25px;
+        border-top: solid 5px;
+    }
+    
+    h3{
+        font-size: 20px;
+        font-weight: 600;
+        padding-top: 25px;
+    }
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        padding: 55px;
+
+        & > * {
+            margin-bottom: 20px;
+        }
+    }
+
+}
+
+.greeting-section{
+    background: url(asset-path("greeting_hero_image.jpg"));
+    background-position: bottom;
+    background-size: cover;
+    color: white;
+    max-width: 100%;
+
+    .inner {
+        align-items: flex-end;
+        background: transparentize($secondary, 0.1);
+    }
+
+    h1{
+        border-color: $light;
+    }
+
+    .inline{
+        margin-left: 15px;
+    }
+
+    .btn-highlighted{
+        color: $main-color;
+        background-color: $light-secondary;
+    }
+
+}
+
+.create-route-section{
+    background: url(asset-path("route_hero_image.jpg"));
+    background-position: center;
+    background-size: cover;
+    color: white;
+    max-width: 100%;
+
+    .inner {
+        align-items: flex-start;
+        background: transparentize($dark, 0.1);
+    }
+}
+
+.find-route-section{
+    background: url(asset-path("find_route_hero_image.jpg"));
+    background-position: center;
+    background-size: cover;
+    color: $dark;
+    max-width: 100%;
+
+    .inner {
+        align-items: flex-end;
+        background: transparentize($light, 0.05);
+    }
+}

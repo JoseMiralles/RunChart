@@ -16,11 +16,13 @@ input {
 
     &:focus{
         outline-color: $main-color;
+        background: $light;
     }
 }
 
 h1 {
     font-size: 24px;
+    letter-spacing: 8px;
 }
 
 hr {
@@ -30,20 +32,28 @@ hr {
 .container {
     max-width: 980px;
     margin:auto;
-    padding-left: 16px;
-    padding-right: 16px;
+}
+
+.inline {
+    display: inline-block !important;
 }
 
 .wide{
     width: -webkit-fill-available;
 }
 
+.half{
+    width: 50%;
+}
+
 .btn{
+    display: block;
     padding: 10px 16px;
     border-radius: 4px;
     background: none;
     border: none;
     font-family: inherit;
+    text-align: center;
 }
 
 .btn-main{
@@ -54,6 +64,16 @@ hr {
 .btn-highlighted {
     background-color: $highlighted-color;
     color: $light;
+}
+
+.btn-outline {
+    border: solid $light 1px;
+    color: $light;
+}
+
+.btn-outline-dark {
+    border: solid $dark 1px;
+    color: $dark;
 }
 
 .errors-list{

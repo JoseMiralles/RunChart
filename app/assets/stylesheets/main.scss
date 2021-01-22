@@ -86,3 +86,12 @@ hr {
         border-radius: 3px;
     }
 }
+
+
+
+
+@media only screen and (max-width: 600px){
+    .half {
+        width: unset;
+    }
+}

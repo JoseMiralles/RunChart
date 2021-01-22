@@ -30,6 +30,10 @@
 
 // This is the box at the top of the homepage, only appears when the user ins't loged in.
 .greeting-section{
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+
     background: url(asset-path("greeting_hero_image.jpg"));
     background-position: bottom;
     background-size: cover;
@@ -38,7 +42,10 @@
 
     .inner {
         align-items: flex-end;
-        background: transparentize($main-color, 0.2);
+        background: transparentize(
+            darken($main-color, 7%),
+            0.05
+            );
     }
 
     h1{
@@ -50,7 +57,7 @@
     }
 
     .btn-highlighted{
-        color: $main-color;
+        color: $dark;
         background-color: $light-secondary;
     }
 

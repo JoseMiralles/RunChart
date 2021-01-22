@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 
 import Greeting from "./greeting";
 
+/// This is the landing page.
 const HomeScreen = (props) => {
     return(
         <section className="container home-screen-container">
             
+            {/* /// Only renders if the user isn't signed in. */}
             {!props.currentUser ? <Greeting/> : ""}
 
             <div className="create-route-section">
@@ -26,7 +28,7 @@ const HomeScreen = (props) => {
                     <p className="half">
                         Search specifics, find popular routes, and save your favorites.
                     </p>
-                    <h3>FIND A NEW ROUTES</h3>
+                    <h3>FIND NEW ROUTES</h3>
                     <Link className="btn btn-main" to="/routes/new">Find Routes</Link>
                 </div>
             </div>

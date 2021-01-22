@@ -16,7 +16,7 @@ const HomeScreen = (props) => {
                         Stay safe, plan logistics, and know the terrain.
                     </p>
                     <h3>CREATE YOUR OWN ROUTE</h3>
-                    <Link className="btn btn-outline" to="/routes/new">Create Route</Link>
+                    <Link className="btn btn-main" to="/routes/new">Create Route</Link>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@ const HomeScreen = (props) => {
                         Search specifics, find popular routes, and save your favorites.
                     </p>
                     <h3>FIND A NEW ROUTES</h3>
-                    <Link className="btn btn-outline-dark" to="/routes/new">Find Routes</Link>
+                    <Link className="btn btn-main" to="/routes/new">Find Routes</Link>
                 </div>
             </div>
 

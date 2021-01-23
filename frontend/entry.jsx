@@ -9,6 +9,8 @@ import Root from "./components/root";
 // window.SessionApiUtil = SessionApiUtil;
 // import * as sessionActions from "./actions/session_actions";
 // window.sessionActions = sessionActions;
+import * as routeAPI from "./util/routes_api_util";
+window.routeAPI = routeAPI;
 
 document.addEventListener("DOMContentLoaded", () => {
 

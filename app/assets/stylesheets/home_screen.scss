@@ -44,8 +44,9 @@
         padding-bottom: 100px;
         align-items: center;
         background: transparentize(
-            darken($dark, 7%),
-            0.05
+            darken(black, 7%),
+            // darken($dark, 7%),
+            10 / 100
             );
         width: -webkit-fill-available;
     }

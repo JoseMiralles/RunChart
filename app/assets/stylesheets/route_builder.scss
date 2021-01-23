@@ -8,6 +8,26 @@
     bottom: 0;
     right: 0;
     left: 0;
+
+
+    .messages {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        ul{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            li{
+                z-index: 100;
+                padding: 15px 20px 15px 20px ;
+                background: $main-color;
+                color: $light;
+                border-radius: 100px;
+            }
+        }
+    }
 }
 
 .map-container{

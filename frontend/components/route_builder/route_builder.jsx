@@ -7,7 +7,9 @@ export default class RouteBuilder extends React.Component {
         super(props);
 
         this.state = {
-            GMapsLoaded: false
+            GMapsLoaded: false,
+            mapIsSetup: false,
+            empty_path: true
         }
 
         this.handleMapClick = this.handleMapClick.bind(this);
@@ -16,14 +18,32 @@ export default class RouteBuilder extends React.Component {
     render(){
         return(
             <div className="route-builder-container">
+
+                <div className="messages">
+                    <ul>
+                        {this.state.empty_path && <li className="click-to-start">Click anywhere on the map to start.</li>}
+                    </ul>
+                </div>
+
+                {/* Render The map controls only if the map is already setup. */}
+                { this.state.mapIsSetup && this.renderMapControls() }
+                
                 <div className="map-container" ref="map"></div>
+
             </div>
+        );
+    }
+
+    renderMapControls(){
+        return(
+            <h1>controls</h1>
         );
     }
 
     componentDidMount(){
         // Load the Google maps api, and then set GMapsLoaded to true.
         // This will cause componentDidUpdate() to be launched.
+        
         loadGMaps(()=>{
             this.setState({GMapsLoaded: true});
         });
@@ -31,7 +51,8 @@ export default class RouteBuilder extends React.Component {
 
     componentDidUpdate(){
         // Set up the map, if the Google maps api is loaded.
-        if (this.state.GMapsLoaded) this.setUpMap();
+        if (this.state.GMapsLoaded && this.state.mapIsSetup === false)
+            this.setUpMap();
     }
     
 
@@ -59,9 +80,13 @@ export default class RouteBuilder extends React.Component {
 
         // Add click event listener for the map.
         this.map.addListener("click", this.handleMapClick);
+
+        // Set mapIsSetup to true to avoid re-rendering the map.
+        this.setState({mapIsSetup: true});
     }
 
     handleMapClick(e){
+        this.setState({empty_path: false});
         const path = this.poly.getPath();
         path.push(e.latLng);
 

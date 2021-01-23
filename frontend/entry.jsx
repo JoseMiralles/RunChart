@@ -11,13 +11,15 @@ import Root from "./components/root";
 // window.sessionActions = sessionActions;
 import * as routeAPI from "./util/routes_api_util";
 window.routeAPI = routeAPI;
+import * as routeActions from "./actions/routes_actions";
+window.routeActions = routeActions;
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const store = generateStore();
 
     // Remove on production
-    // window.store = store;
+    window.store = store;
     
     ReactDOM.render(
         <Root store={store} />,

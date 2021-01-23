@@ -1,3 +1,5 @@
+import * as api from "../util/routes_api_util";
+
 
 
 export const RECEIVE_ALL_ROUTES = "RECEIVE_ALL_ROUTES";
@@ -19,8 +21,29 @@ export const removeRoute = (routeId) => ({
     routeId
 });
 
-export const fetchRoutes = () => {
-    return (dispatch) => {
-        return 
-    }
-}
+
+
+export const fetchRoutes = () => (dispatch) => (
+    api.fetchRoutes()
+    .then(routes => dispatch(receiveAllRoutes(routes)))
+);
+
+export const fetchRoute = (id) => (dispatch) => (
+    api.fetchRoute(id)
+    .then(route => dispatch(receiveRoute(route)))
+);
+
+export const createRoute = (newRoute) => (dispatch) => (
+    api.createRoute(newRoute)
+    .then(route => dispatch(receiveRoute(route)))
+);
+
+export const updateRoute = (editedRoute) => (dispatch) => (
+    api.updateRoute(editedRoute)
+    .then(route => dispatch(receiveRoute(route)))
+);
+
+export const deleteRoute = (id) => (dispatch) => (
+    api.deleteRoute(id)
+    .then(() => dispatch(removeRoute(id)))
+);

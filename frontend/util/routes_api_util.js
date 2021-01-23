@@ -1,5 +1,4 @@
 
-
 export const fetchRoutes = () => (
     $.ajax({
         method: "GET",
@@ -24,7 +23,7 @@ export const createRoute = (routeForm) => (
 
 export const updateRoute = (routeForm) => (
     $.ajax({
-        method: "UPDATE",
+        method: "PATCH",
         url: `/api/routes/${routeForm.id}`,
         data: {route: routeForm}
     })

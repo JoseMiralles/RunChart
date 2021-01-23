@@ -34,7 +34,14 @@ nav {
         font-size: 16px;
 
         a{
-            padding: 1.3rem;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            padding: 0px 20px 0px 20px;
+        }
+
+        .selected{
+            background: $light-secondary;
         }
     }
 

@@ -9,10 +9,9 @@
     right: 0;
     left: 0;
 
-
     .messages {
         position: absolute;
-        top: 40px;
+        top: 11px;
         width: 100%;
         ul{
             display: flex;
@@ -32,4 +31,22 @@
 
 .map-container{
     height: 100%;
+}
+
+.controls-container{
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    bottom:0;
+    display: flex;
+    justify-content: center;
+
+    .controls{
+        display: flex;
+    }
+    
+    .btn{
+        background: $light-secondary;
+        border-radius: 0px;
+    }
 }

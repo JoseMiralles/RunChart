@@ -9,34 +9,46 @@ export default class RouteBuilder extends React.Component {
         this.state = {
             GMapsLoaded: false,
             mapIsSetup: false,
-            empty_path: true
+            emptyPath: true,
+            totalMiles: 0
         }
 
         this.handleMapClick = this.handleMapClick.bind(this);
+        this.handleControlClick = this.handleControlClick.bind(this);
+        this.polyPathChanged = this.polyPathChanged.bind(this);
     }
 
+    /// RENDER <<<
     render(){
         return(
             <div className="route-builder-container">
 
                 <div className="messages">
                     <ul>
-                        {this.state.empty_path && <li className="click-to-start">Click anywhere on the map to start.</li>}
+                        {!this.state.emptyPath && <li>Miles: {this.state.totalMiles}</li>}
+                        {this.state.emptyPath && <li className="click-to-start">Click anywhere on the map to start.</li>}
                     </ul>
                 </div>
 
                 {/* Render The map controls only if the map is already setup. */}
-                { this.state.mapIsSetup && this.renderMapControls() }
+                { !this.state.emptyPath && this.renderMapControls() }
                 
                 <div className="map-container" ref="map"></div>
 
             </div>
         );
     }
+    /// RENDER END >>>
 
     renderMapControls(){
         return(
-            <h1>controls</h1>
+            <div className="controls-container">
+                <div onClick={ this.handleControlClick } className="controls">
+                    <button className="btn" action="undo">undo</button>
+                    <button className="btn" action="clear">clear</button>
+                    <button className="btn" action="save">save</button>
+                </div>
+            </div>
         );
     }
 
@@ -50,9 +62,28 @@ export default class RouteBuilder extends React.Component {
     }
 
     componentDidUpdate(){
-        // Set up the map, if the Google maps api is loaded.
+        // Set up the map, if the Google maps api is loaded, and it hasn't been setup yet..
         if (this.state.GMapsLoaded && this.state.mapIsSetup === false)
             this.setUpMap();
+    }
+
+    handleControlClick(e){
+        switch(e.target.attributes.action.value){
+            case "undo":
+                this.poly.getPath().pop();
+                break;
+            case "clear":
+                this.poly.getPath().clear();
+                break;
+            case "save":
+                debugger
+                break;
+        }
+        if (!this.poly.getPath().length){
+            // Remove the start marker, and update state if the path is empty.
+            this.startMarker.setMap(null);
+            this.setState({ emptyPath: true });
+        }
     }
     
 
@@ -75,8 +106,15 @@ export default class RouteBuilder extends React.Component {
             strokeColor: "#F15025",
             strokeOpacity: 1.0,
             strokeWeight: 7,
+            editable: true
         });
         this.poly.setMap(this.map);
+
+        // Listen to changes to the poliLine's path.
+        google.maps.event.addListener(this.poly, "dragend", this.polyPathChanged);
+        google.maps.event.addListener(this.poly.getPath(), "insert_at", this.polyPathChanged);
+        google.maps.event.addListener(this.poly.getPath(), "remove_at", this.polyPathChanged);
+        google.maps.event.addListener(this.poly.getPath(), "set_at", this.polyPathChanged);
 
         // Add click event listener for the map.
         this.map.addListener("click", this.handleMapClick);
@@ -85,19 +123,34 @@ export default class RouteBuilder extends React.Component {
         this.setState({mapIsSetup: true});
     }
 
+    // Handles chanes to the polypath, and updates markers and miles.
+    polyPathChanged(idx){
+        const path = this.poly.getPath();
+        this.setState({
+            totalMiles: Number.parseFloat(
+                google.maps.geometry.spherical.computeLength(path) / 1600
+            ).toFixed(2)
+        });
+
+        if (!this.startMarker) {
+            this.startMarker = new google.maps.Marker({
+                position: path.Lb[0],
+                title: "START",
+                map: this.map,
+            });
+            this.startMarker.addListener("click", () => {
+                this.poly.getPath().push(this.startMarker.getPosition());
+            });
+        } else {
+            this.startMarker.setPosition(path.Lb[0]);
+            this.startMarker.setMap(this.map);
+        }
+    }
+
     handleMapClick(e){
-        this.setState({empty_path: false});
+        this.setState({emptyPath: false});
         const path = this.poly.getPath();
         path.push(e.latLng);
-
-        // Add a marker if this is the first point.
-        if (path.length === 1) {
-            new google.maps.Marker({
-              position: e.latLng,
-              title: "#" + path.getLength(),
-              map: this.map,
-            });
-        }
     }
 
 }

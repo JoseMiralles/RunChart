@@ -1,7 +1,5 @@
 import * as api from "../util/routes_api_util";
 
-
-
 export const RECEIVE_ALL_ROUTES = "RECEIVE_ALL_ROUTES";
 export const RECEIVE_ROUTE = "RECEIVE_ROUTE";
 export const REMOVE_ROUTE = "REMOVE_ROUTE";

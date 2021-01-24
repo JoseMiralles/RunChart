@@ -4,7 +4,7 @@ export const loadGMaps = (callback) => {
   const existingScript = document.getElementById('googleMaps');
   if (!existingScript) {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=geometry`;
     script.id = 'googleMaps';
     document.body.appendChild(script);
     script.onload = () => {

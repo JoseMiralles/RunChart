@@ -85,7 +85,8 @@ export default class RouteBuilder extends React.Component {
                 this.poly.getPath().pop();
                 break;
             case "clear":
-                this.poly.getPath().clear();
+                if (window.confirm("Are you sure you want to clear the map?"))
+                    this.poly.getPath().clear();
                 break;
             case "save":
                 this.handleSave();
@@ -99,16 +100,19 @@ export default class RouteBuilder extends React.Component {
     }
 
     handleSave(){
-        const route = {
-            creatorId: this.props.creatorId,
-            name: "Test Name",
-            route: google.maps.geometry.encoding.encodePath(this.poly.getPath()),
-            startLat: this.poly.getPath().Lb[0].lat(),
-            startLng: this.poly.getPath().Lb[0].lng()
-        };
-        this.props.action(route).then((savedRoute) => {
-            this.props.history.push(`routes/${savedRoute.route.id}`);
-        });
+        const name = prompt("Give your new route a name.");
+        if (name){
+            const route = {
+                creatorId: this.props.creatorId,
+                name: name,
+                route: google.maps.geometry.encoding.encodePath(this.poly.getPath()),
+                startLat: this.poly.getPath().Lb[0].lat(),
+                startLng: this.poly.getPath().Lb[0].lng()
+            };
+            this.props.action(route).then((savedRoute) => {
+                this.props.history.push(`routes/${savedRoute.route.id}`);
+            });
+        }
     }
     
 

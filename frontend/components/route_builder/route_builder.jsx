@@ -18,6 +18,7 @@ export default class RouteBuilder extends React.Component {
         this.polyPathChanged = this.polyPathChanged.bind(this);
     }
 
+
     /// RENDER <<<
     render(){
         return(
@@ -38,22 +39,29 @@ export default class RouteBuilder extends React.Component {
             </div>
         );
     }
-    /// RENDER END >>>
 
     renderMapControls(){
         return(
             <div className="controls-container">
                 <div onClick={ this.handleControlClick } className="controls">
                     <button className="btn" action="undo">
-                        <i className="material-icons">face</i>
-                        undo
+                        <i className="material-icons" action="undo">undo</i>
+                        <label action="undo">undo</label>
                     </button>
-                    <button className="btn" action="clear">clear</button>
-                    <button className="btn" action="save">save</button>
+                    <button className="btn" action="clear">
+                        <i className="material-icons" action="clear">clear</i>
+                        <label action="clear">clear</label>
+                    </button>
+                    <button className="btn" action="save">
+                        <i className="material-icons" action="save">save</i>
+                        <label action="save">save</label>
+                    </button>
                 </div>
             </div>
         );
     }
+    /// RENDER END >>>
+
 
     componentDidMount(){
         // Load the Google maps api, and then set GMapsLoaded to true.

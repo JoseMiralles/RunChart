@@ -46,7 +46,14 @@
     }
     
     .btn{
-        background: $light-secondary;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+
+        background: $main-color;
+        color: $light;
         border-radius: 0px;
+        font-size: 10px;
     }
 }

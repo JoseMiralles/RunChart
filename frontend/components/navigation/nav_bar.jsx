@@ -13,7 +13,7 @@ export default class NavBar extends React.Component {
         return(
             <nav className="container">
                 <div className="left">
-                    <Link className="logo" to="/">RunChart</Link>
+                    <Link id="nav-logo" className="logo" to="/">RunChart</Link>
                 </div>
                 <div className="center">
                     <Link to="/routes/new">Create Route</Link>

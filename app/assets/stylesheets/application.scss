@@ -2,6 +2,8 @@
 @import "./colors.scss";
 @import "./fonts.scss";
 @import "./main.scss";
+@import "./variables.scss";
+@import "./styles-store.scss"; // Used to communicate styles to JS. 
 
 @import "./home_screen.scss";
 @import "./navbar.scss";

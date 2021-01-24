@@ -16,7 +16,8 @@ window.routeActions = routeActions;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const store = generateStore();
+    const mainColor = document.defaultView.getComputedStyle(document.querySelector("#styles-store")).color;
+    const store = generateStore(mainColor);
 
     // Remove on production
     window.store = store;
@@ -28,19 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-const generateStore = () => {
+const generateStore = (mainColor) => {
     let store;
+    let preloadedState = {
+        styles: {
+            mainColor: mainColor
+        }
+    };
     if (window.currentUser) {
-        const preloadedState = {
-            session: { id: window.currentUser.id },
-            entities: {
-                users: { [window.currentUser.id]: window.currentUser }
-            }
-        };
+        preloadedState.session = { id: window.currentUser.id };
+        preloadedState.entities ={
+            users: { [window.currentUser.id]: window.currentUser }
+        }
         store = configureStore(preloadedState);
         delete window.currentUser;
     } else {
-        store = configureStore();
+        store = configureStore(preloadedState);
     }
     const remove = document.getElementById("bootstrap-current-user");
     if (remove) remove.innerHTML = "";

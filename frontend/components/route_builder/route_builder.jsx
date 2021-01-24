@@ -44,7 +44,10 @@ export default class RouteBuilder extends React.Component {
         return(
             <div className="controls-container">
                 <div onClick={ this.handleControlClick } className="controls">
-                    <button className="btn" action="undo">undo</button>
+                    <button className="btn" action="undo">
+                        <i className="material-icons">face</i>
+                        undo
+                    </button>
                     <button className="btn" action="clear">clear</button>
                     <button className="btn" action="save">save</button>
                 </div>
@@ -96,14 +99,15 @@ export default class RouteBuilder extends React.Component {
             }, // San Francisco coords
             zoom: 14,
             disableDefaultUI: true,
-            zoomControl: true,
+            // zoomControl: true,
             styles: googleMapStyles
         };
         this.map = new google.maps.Map(this.refs.map, mapOptions);
 
         // Initialize the polyline, and add it to the map.
         this.poly = new google.maps.Polyline({
-            strokeColor: "#F15025",
+            // strokeColor: "#F15025",
+            strokeColor: this.props.mainColor,
             strokeOpacity: 1.0,
             strokeWeight: 7,
             editable: true

@@ -34,8 +34,8 @@ nav {
         font-size: 16px;
 
         a{
-            height: 45px;
-            line-height: 45px;
+            height: $navbar-height;
+            line-height: $navbar-height;
             text-align: center;
             padding: 0px 20px 0px 20px;
         }

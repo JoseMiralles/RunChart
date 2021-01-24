@@ -6,7 +6,8 @@ import errorsReducer from "./errors/errors_reducer";
 const rootReducer = combineReducers({
     entities: entitiesReducer,
     session: sessionReducer,
-    errors: errorsReducer
+    errors: errorsReducer,
+    styles: (state)=>{return  state ? state : {}}
 });
 
 export default rootReducer;

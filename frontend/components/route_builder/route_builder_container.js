@@ -1,14 +1,16 @@
 import { connect } from "react-redux";
+import { createRoute } from "../../actions/routes_actions";
 
-import { createRoute } from "../../util/routes_api_util";
+
 import RouteBuilder from "./route_builder";
 
 const ms = (state) => ({
+    creatorId: state.session.id,
     mainColor: state.styles.mainColor
 })
 
 const md = (dispatch) => ({
-    createRoute: (route) => dispatch(createRoute(route))
+    action: (route) => dispatch(createRoute(route))
 });
 
 const RouteBuilderContainer = connect(ms, md)(RouteBuilder);

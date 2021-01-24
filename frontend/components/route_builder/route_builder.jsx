@@ -16,6 +16,7 @@ export default class RouteBuilder extends React.Component {
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleControlClick = this.handleControlClick.bind(this);
         this.polyPathChanged = this.polyPathChanged.bind(this);
+        this.centerMapOnCurrentPosition = this.centerMapOnCurrentPosition.bind(this);
     }
 
 
@@ -87,7 +88,7 @@ export default class RouteBuilder extends React.Component {
                 this.poly.getPath().clear();
                 break;
             case "save":
-                debugger
+                this.handleSave();
                 break;
         }
         if (!this.poly.getPath().length){
@@ -95,6 +96,19 @@ export default class RouteBuilder extends React.Component {
             this.startMarker.setMap(null);
             this.setState({ emptyPath: true });
         }
+    }
+
+    handleSave(){
+        const route = {
+            creatorId: this.props.creatorId,
+            name: "Test Name",
+            route: google.maps.geometry.encoding.encodePath(this.poly.getPath()),
+            startLat: this.poly.getPath().Lb[0].lat(),
+            startLng: this.poly.getPath().Lb[0].lng()
+        };
+        this.props.action(route).then((savedRoute) => {
+            this.props.history.push(`routes/${savedRoute.route.id}`);
+        });
     }
     
 
@@ -111,6 +125,9 @@ export default class RouteBuilder extends React.Component {
             styles: googleMapStyles
         };
         this.map = new google.maps.Map(this.refs.map, mapOptions);
+
+        // Center map on user's current location.
+        navigator.geolocation.getCurrentPosition(this.centerMapOnCurrentPosition);
 
         // Initialize the polyline, and add it to the map.
         this.poly = new google.maps.Polyline({
@@ -133,6 +150,11 @@ export default class RouteBuilder extends React.Component {
 
         // Set mapIsSetup to true to avoid re-rendering the map.
         this.setState({mapIsSetup: true});
+    }
+
+    centerMapOnCurrentPosition(pos){
+        const initialLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        this.map.setCenter(initialLocation);
     }
 
     // Handles chanes to the polypath, and updates markers and miles.

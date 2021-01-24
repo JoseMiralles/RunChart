@@ -11,10 +11,10 @@ const Greeting = (props) => {
                     Draw your routes before every workout.
                     Get important metrics such as total miles.
                 </p>
-                <div className="half">
+                <div >
                     <Link className="btn btn-main wide" to="signup">Sign Up</Link>
                 </div>
-                <div className="half">
+                <div >
                     <DemoButtonContainer />
                 </div>
                 <div>

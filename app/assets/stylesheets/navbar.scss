@@ -19,6 +19,14 @@ nav {
         color: $dark;
     }
 
+    #nav-logo{
+        display: flex;
+        align-items: center;
+        i{
+            margin-right: 12px;
+            font-size: 19px;
+        }
+    }
     .left{
         display: flex;
         align-items: center; // Centers vertically
@@ -52,6 +60,14 @@ nav {
         
         .header-name{
             margin-right: 20px;
+        }
+        
+        .header-name{
+            display: flex;
+            align-items: center;
+            i{
+                margin-right: 5px;
+            }
         }
     }
 

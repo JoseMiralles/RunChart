@@ -25,7 +25,10 @@ export default class NavGreeting extends React.Component {
     renderLogoutViews(){
         return (
             <>
-                <span className="header-name">{this.props.currentUser.username}</span>
+                <span className="header-name">
+                    <i className="material-icons">account_circle</i>
+                    {this.props.currentUser.username}
+                </span>
                 <button className="btn btn-main" onClick={this.props.logout}>Logout</button>
             </>
         );

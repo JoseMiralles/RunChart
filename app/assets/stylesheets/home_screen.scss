@@ -46,9 +46,9 @@
         background: transparentize(
             // darken(black, 7%),
             // darken($dark, 7%),
-            darken($dark-secondary, 10%),
+            black,
             // darken($main-color, 4%),
-            15 / 100
+            5 / 100
             );
         width: -webkit-fill-available;
     }

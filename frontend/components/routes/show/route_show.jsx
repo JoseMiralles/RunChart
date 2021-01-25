@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { googleMapStyles, loadGMaps } from "../../../scripts/googleMapsUtils";
+import { googleMapStyles } from "../../../scripts/googleMapsUtils";
 
 export default class RouteShow extends React.Component{
 
@@ -10,7 +10,6 @@ export default class RouteShow extends React.Component{
 
         this.state = {
             mapIsSetup: false,
-            GMapsLoaded: false,
             serializedRoute: this.props.route ? this.props.route.route : null,
             totalMiles: 0,
             routeOwner: null,
@@ -62,41 +61,31 @@ export default class RouteShow extends React.Component{
     }
 
     componentDidMount(){
-        loadGMaps(() => {
-            this.setState({GMapsLoaded: true});
-        });
-    }
+        this.setUpMap(()=>{
+            // THIS GETS CALLED AFTER THE MAP IS LOADED AND RENDERED.
+            // Render the path if it is already in state.
+            if (this.state.serializedRoute){
+                this.createPolyPath();
+            }
 
-    componentDidUpdate(){
-        // Set up the map, if the Google maps api is loaded, and it hasn't been setup yet..
-        if (this.state.GMapsLoaded && !this.state.mapIsSetup){
-            this.setUpMap(()=>{
-                // THIS GETS CALLED AFTER THE MAP IS LOADED AND RENDERED.
-                // Render the path if it is already in state.
-                if (this.state.serializedRoute){
-                    this.createPolyPath();
-                }
-    
-                // Fetch the map from the server to ensure having the latest version.
-                this.props.fetchRoute(this.props.routeId).then((action)=>{
+            // Fetch the map from the server to ensure having the latest version.
+            this.props.fetchRoute(this.props.routeId).then((action)=>{
+                this.setState({
+                    serializedRoute: action.route.route,
+                    route: action.route
+                });
+                // This adds the path to the map, and updates `totalMiles` in state.
+                this.createPolyPath();
+                
+                // Fetch the owner
+                // TODO: Ask if I should instead fetch the owner and route at once.
+                this.props.fetchUser(action.route.creatorId).then(action => {
                     this.setState({
-                        serializedRoute: action.route.route,
-                        route: action.route
-                    });
-                    // This adds the path to the map, and updates `totalMiles` in state.
-                    this.createPolyPath();
-                    
-                    // Fetch the owner
-                    // TODO: Ask if I should instead fetch the owner and route at once.
-                    this.props.fetchUser(action.route.creatorId).then(action => {
-                        this.setState({
-                            routeOwner: action.user
-                        });
+                        routeOwner: action.user
                     });
                 });
             });
-        }
-        // THE
+        });
     }
 
     setUpMap(mapLoadedCallback){

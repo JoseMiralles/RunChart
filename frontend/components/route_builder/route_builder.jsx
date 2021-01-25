@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { loadGMaps, googleMapStyles } from "../../scripts/googleMapsUtils";
+import { googleMapStyles } from "../../scripts/googleMapsUtils";
 
 export default class RouteBuilder extends React.Component {
 
@@ -7,7 +7,6 @@ export default class RouteBuilder extends React.Component {
         super(props);
 
         this.state = {
-            GMapsLoaded: false,
             mapIsSetup: false,
             emptyPath: true,
             totalMiles: 0
@@ -65,18 +64,7 @@ export default class RouteBuilder extends React.Component {
 
 
     componentDidMount(){
-        // Load the Google maps api, and then set GMapsLoaded to true.
-        // This will cause componentDidUpdate() to be launched.
-        
-        loadGMaps(()=>{
-            this.setState({GMapsLoaded: true});
-        });
-    }
-
-    componentDidUpdate(){
-        // Set up the map, if the Google maps api is loaded, and it hasn't been setup yet..
-        if (this.state.GMapsLoaded && this.state.mapIsSetup === false)
-            this.setUpMap();
+        this.setUpMap();
     }
 
     handleControlClick(e){

@@ -20,9 +20,16 @@ input {
     }
 }
 
-h1 {
-    font-size: 24px;
+// h1 {
+//     font-size: 24px;
+// }
+
+h1{
+    font-size: 45px;
+    font-weight: 800;
+    padding-top: 25px;
     letter-spacing: 8px;
+    text-transform: uppercase;
 }
 
 hr {
@@ -33,6 +40,10 @@ hr {
     max-width: 980px;
     margin:auto;
     overflow: hidden;
+}
+
+.bold{
+    font-weight: bold;
 }
 
 .inline {
@@ -85,6 +96,11 @@ hr {
         margin: 12px;
         border-radius: 3px;
     }
+}
+
+.flex-horizontal{
+    display: flex;
+    align-items: center;
 }
 
 

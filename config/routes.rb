@@ -1,8 +1,8 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
-#                  api_user GET    /api/user(.:format)                                                                      api/users#show {:format=>:json}
-#                           POST   /api/user(.:format)                                                                      api/users#create {:format=>:json}
+#            api_user_index POST   /api/user(.:format)                                                                      api/user#create {:format=>:json}
+#                  api_user GET    /api/user/:id(.:format)                                                                  api/user#show {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>:json}
 #                api_routes GET    /api/routes(.:format)                                                                    api/routes#index {:format=>:json}
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api, defaults: {format: :json} do
-    resource :user, only: [:create, :show]
+    resources :user, only: [:create, :show]
     resource :session, only: [:create, :destroy]
     resources :routes, only: [:create, :destroy, :index, :show, :update]
   end

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { googleMapStyles, loadGMaps } from "../../../scripts/googleMapsUtils";
 
 export default class RouteShow extends React.Component{
@@ -10,7 +11,11 @@ export default class RouteShow extends React.Component{
         this.state = {
             mapIsSetup: false,
             GMapsLoaded: false,
-            serializedRoute: this.props.route ? this.props.route.route : null 
+            serializedRoute: this.props.route ? this.props.route.route : null,
+            totalMiles: 0,
+            routeOwner: null,
+            route: null,
+            routeLocation: ""
         }
 
         this.setUpMap = this.setUpMap.bind(this);
@@ -18,7 +23,30 @@ export default class RouteShow extends React.Component{
 
     render(){
         return(
-            <div className="route-show-container">
+            <div className="route-show-container container">
+
+                <div className="route-show-stats-container">
+                    <div className="flex-horizontal">
+                        <i className="material-icons">account_circle</i>
+                        &nbsp;
+                        {this.state.routeOwner &&
+                        <Link to={`/users/${this.state.routeOwner.id}`}>
+                            { this.state.routeOwner.username}
+                        </Link>}
+                    </div>
+                    <div className="flex-horizontal info-field">
+                        <i className="material-icons">straighten</i>
+                        &nbsp;
+                        {this.state.totalMiles || "..."} miles
+                    </div>
+                    <h1>{this.state.route ? this.state.route.name : "..."}</h1>
+                </div>
+
+                <div className="">
+                    {/* This is where the EDIT and BOOKMARK links will go. */}
+                    
+                </div>
+
                 <div className="route-show-map" ref="map"></div>
             </div>
         );
@@ -41,11 +69,21 @@ export default class RouteShow extends React.Component{
                 }
     
                 // Fetch the map from the server to ensure having the latest version.
-                this.props.fetchRoute(this.props.routeId).then((route)=>{
+                this.props.fetchRoute(this.props.routeId).then((action)=>{
                     this.setState({
-                        serializedRoute: route.route.route
+                        serializedRoute: action.route.route,
+                        route: action.route
                     });
+                    // This adds the path to the map, and updates `totalMiles` in state.
                     this.createPolyPath();
+                    
+                    // Fetch the owner
+                    // TODO: Ask if I should instead fetch the owner and route at once.
+                    this.props.fetchUser(action.route.creatorId).then(action => {
+                        this.setState({
+                            routeOwner: action.user
+                        });
+                    });
                 });
             });
         }
@@ -88,6 +126,13 @@ export default class RouteShow extends React.Component{
         const bounds = new google.maps.LatLngBounds();
         this.poly.getPath().forEach(coor => bounds.extend(coor));
         this.map.fitBounds(bounds);
+
+        // Set the total miles.
+        this.setState({
+            totalMiles: Number.parseFloat(
+                google.maps.geometry.spherical.computeLength(this.poly.getPath()) / 1600
+            ).toFixed(2)
+        });
     }
 
 }

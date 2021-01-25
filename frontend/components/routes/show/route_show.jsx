@@ -5,6 +5,8 @@ export default class RouteShow extends React.Component{
 
     constructor(props){
         super(props);
+        console.log(props);
+
         this.state = {
             mapIsSetup: false,
             GMapsLoaded: false,

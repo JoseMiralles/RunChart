@@ -5,7 +5,7 @@ import { deleteRoute, fetchRoute } from "../../../actions/routes_actions";
 
 const ms = (state, ownProps) => ({
     routeId: ownProps.match.params.routeId,
-    route: state.routes ? state.routes[ownProps.match.params.routeId] : null,
+    route: state.entities.routes ? state.entities.routes[ownProps.match.params.routeId] : null,
     sessionId: state.session.id || null,
     mainColor: state.styles.mainColor
 });

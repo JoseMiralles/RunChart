@@ -7,7 +7,7 @@ export default class RouteBuilder extends React.Component {
         super(props);
 
         this.state = {
-            GMapsLoaded: Boolean(typeof google !== 'undefined'),
+            GMapsLoaded: false,
             mapIsSetup: false,
             emptyPath: true,
             totalMiles: 0
@@ -68,7 +68,7 @@ export default class RouteBuilder extends React.Component {
         // Load the Google maps api, and then set GMapsLoaded to true.
         // This will cause componentDidUpdate() to be launched.
         
-        if(!this.state.GMapsLoaded) loadGMaps(()=>{
+        loadGMaps(()=>{
             this.setState({GMapsLoaded: true});
         });
     }

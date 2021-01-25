@@ -7,7 +7,7 @@ export default class RouteShow extends React.Component{
         super(props);
         this.state = {
             mapIsSetup: false,
-            GMapsLoaded: Boolean(typeof google !== 'undefined'),
+            GMapsLoaded: false,
             serializedRoute: this.props.route ? this.props.route.route : null 
         }
 
@@ -23,7 +23,7 @@ export default class RouteShow extends React.Component{
     }
 
     componentDidMount(){
-        if(!this.state.GMapsLoaded) loadGMaps(() => {
+        loadGMaps(() => {
             this.setState({GMapsLoaded: true});
         });
     }
@@ -81,7 +81,11 @@ export default class RouteShow extends React.Component{
             path: google.maps.geometry.encoding.decodePath(this.state.serializedRoute),
         });
         this.poly.setMap(this.map);
-        this.map.setCenter(this.poly.getPath().Lb[0]);
+
+        // Fit map bounds to show entire path.
+        const bounds = new google.maps.LatLngBounds();
+        this.poly.getPath().forEach(coor => bounds.extend(coor));
+        this.map.fitBounds(bounds);
     }
 
 }

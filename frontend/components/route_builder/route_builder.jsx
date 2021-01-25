@@ -46,8 +46,8 @@ export default class RouteBuilder extends React.Component {
             <div className="controls-container">
                 <div onClick={ this.handleControlClick } className="controls">
                     <button className="btn" action="undo">
-                        <i className="material-icons" action="undo">undo</i>
-                        <label action="undo">undo</label>
+                        <i className="material-icons" action="undo">backspace</i>
+                        <label action="undo">back</label>
                     </button>
                     <button className="btn" action="clear">
                         <i className="material-icons" action="clear">clear</i>

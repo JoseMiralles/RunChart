@@ -22,6 +22,10 @@ export default class RouteShow extends React.Component{
     }
 
     render(){
+
+        // Check if the user is the owner of this route.
+        const isOwner = this.state.routeOwner && (this.state.routeOwner.id === this.props.sessionId);
+        
         return(
             <div className="route-show-container container">
 
@@ -42,9 +46,14 @@ export default class RouteShow extends React.Component{
                     <h1>{this.state.route ? this.state.route.name : "..."}</h1>
                 </div>
 
-                <div className="">
+                <div className="links-container container flex-horizontal">
                     {/* This is where the EDIT and BOOKMARK links will go. */}
-                    
+                    { isOwner && <Link className="flex-horizontal" to={`/routes/${this.props.routeId}/edit`}>
+                        <i className="material-icons">create</i>
+                        Edit</Link> }
+                    { this.props.sessionId && <button className="flex-horizontal">
+                        <i className="material-icons">bookmark</i>
+                        Bookmark</button> }
                 </div>
 
                 <div className="route-show-map" ref="map"></div>

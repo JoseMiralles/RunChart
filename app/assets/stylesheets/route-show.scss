@@ -14,7 +14,7 @@
     .info-field{
         background: $main-color;
         color: $light;
-        padding: 4px 10px;
+        padding: 4px 18px;
         width: fit-content;
         border-radius: 25px;
     }
@@ -22,5 +22,43 @@
     & > * {
         padding: 0px;
         margin-bottom: 10px;
+    }
+
+    *:last-child{
+        margin-bottom: 0px;
+    }
+}
+
+.links-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    font-size: 21px;
+
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background-color: rgba(255, 255, 255, 0.7);
+
+    *{
+        padding: 0px 10px;
+        border-right: solid $dark 1px;
+    }
+    *:last-child{
+        border-right: none;
+    }
+    &:empty{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 600px){
+    .route-show-stats-container {
+        padding: 7px;
     }
 }

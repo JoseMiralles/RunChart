@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>RunChart</title>
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=" + Rails.application.credentials[:google][:maps_key] %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

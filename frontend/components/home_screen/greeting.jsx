@@ -6,7 +6,11 @@ const Greeting = (props) => {
     return (
         <div className="greeting-section">
             <div className="inner">
+                
+                <hr className="weird_line"></hr>
                 <h1>OWN EVERY MILE</h1>
+                <hr className="weird_line"></hr>
+
                 <p className="half">
                     Draw your routes before every workout.
                     Get important metrics such as total miles.

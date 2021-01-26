@@ -36,6 +36,10 @@ hr {
     width: 100%;
 }
 
+p, span {
+    font-style: italic;
+}
+
 .container {
     max-width: 980px;
     margin:auto;
@@ -66,16 +70,33 @@ hr {
     border: none;
     font-family: inherit;
     text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+
+    &:hover{
+        background: $light-secondary;
+        color: $dark;
+    }
 }
 
 .btn-main{
     background-color: $main-color;
     color: $light;
+
+    &:hover{
+        background: darken($main-color, 10%);
+        color: $light;
+    }
 }
 
 .btn-highlighted {
-    background-color: $highlighted-color;
+    background-color: $dark;
     color: $light;
+
+    &:hover{
+        background: lighten($dark, 10%);
+        color: $light;
+    }
 }
 
 .btn-outline {

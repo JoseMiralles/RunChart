@@ -13,7 +13,11 @@ const HomeScreen = (props) => {
 
             <div className="create-route-section">
                 <div className="inner">
+
+                    <hr className="weird_line"></hr>
                     <h1>BLAZE NEW TRAILS</h1>
+                    <hr className="weird_line"></hr>
+
                     <p className="half">
                         Stay safe, plan logistics, and know the terrain.
                     </p>
@@ -24,7 +28,10 @@ const HomeScreen = (props) => {
 
             <div className="find-route-section">
                 <div className="inner">
+                    <hr className="weird_line"></hr>
                     <h1>EXPLORE CITY ROUTES</h1>
+                    <hr className="weird_line"></hr>
+                    
                     <p className="half">
                         Search specifics, find popular routes, and save your favorites.
                     </p>

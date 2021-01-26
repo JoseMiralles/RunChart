@@ -8,6 +8,7 @@ export default class DemoButton extends React.Component {
     }
 
     handleDemoLogin(e){
+        e.preventDefault();
         this.props.login({
             username: "TimBernersLee",
             password: "123456"

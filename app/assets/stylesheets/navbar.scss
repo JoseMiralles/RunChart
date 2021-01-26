@@ -4,8 +4,6 @@ nav {
     align-items: center; // Centers vertically
     // justify-content: space-around; // Spaced and centered
     // background: $dark;
-    padding-left: 16px;
-    padding-right: 16px;
     font-size: 14px;
 
     .logo{
@@ -35,6 +33,7 @@ nav {
         display: flex;
         align-items: center; // Centers vertically
         justify-content: flex-start;
+        margin-left: 10px;
     }
 
     // Center links
@@ -72,6 +71,10 @@ nav {
             i{
                 margin-right: 5px;
             }
+        }
+
+        *{
+            margin-right: 10px;
         }
     }
 

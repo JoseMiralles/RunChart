@@ -9,13 +9,16 @@ export default class RouteBuilder extends React.Component {
         this.state = {
             mapIsSetup: false,
             emptyPath: true,
-            totalMiles: 0
+            totalMiles: 0,
+            // serializedRoute: this.props.route ? this.props.route.route : null,
+            serializedRoute: null 
         }
 
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleControlClick = this.handleControlClick.bind(this);
         this.polyPathChanged = this.polyPathChanged.bind(this);
         this.centerMapOnCurrentPosition = this.centerMapOnCurrentPosition.bind(this);
+        this.createPolyPath = this.createPolyPath.bind(this);
     }
 
 
@@ -64,7 +67,22 @@ export default class RouteBuilder extends React.Component {
 
 
     componentDidMount(){
-        this.setUpMap();
+        if (!this.props.routeId){
+            // If there is now routeId provided, then this is a new route.
+            this.setUpMap(this.createPolyPath);
+        } else {
+            // If there is a routeId, then this is route that is being edited.
+            this.setUpMap(() => {
+                this.props.fetchRoute(this.props.routeId).then(action => {
+                    this.setState({
+                        serializedRoute: action.route.route,
+                        route: action.route
+                    });
+                    // The path can now be drawn.
+                    this.createPolyPath();
+                });
+            });
+        }
     }
 
     handleControlClick(e){
@@ -80,15 +98,11 @@ export default class RouteBuilder extends React.Component {
                 this.handleSave();
                 break;
         }
-        if (!this.poly.getPath().length){
-            // Remove the start marker, and update state if the path is empty.
-            this.startMarker.setMap(null);
-            this.setState({ emptyPath: true });
-        }
     }
 
     handleSave(){
-        const name = prompt("Give your new route a name.");
+
+        const name = prompt("Give your new route a name.", this.state.route.name);
         if (name){
             const route = {
                 creatorId: this.props.creatorId,
@@ -97,6 +111,7 @@ export default class RouteBuilder extends React.Component {
                 startLat: this.poly.getPath().Lb[0].lat(),
                 startLng: this.poly.getPath().Lb[0].lng()
             };
+            if (this.props.routeId) route.id = this.props.routeId;
             this.props.action(route).then((savedRoute) => {
                 this.props.history.push({
                     pathname: `/routes/${savedRoute.route.id}`
@@ -104,9 +119,9 @@ export default class RouteBuilder extends React.Component {
             });
         }
     }
-    
 
-    setUpMap(){
+    // Sets up and renders the map, and calls the callback once it's rendered.
+    setUpMap(mapLoadedCallback){
         // Setup map with options.
         const mapOptions = {
             center: {
@@ -120,9 +135,15 @@ export default class RouteBuilder extends React.Component {
         };
         this.map = new google.maps.Map(this.refs.map, mapOptions);
 
-        // Center map on user's current location.
-        navigator.geolocation.getCurrentPosition(this.centerMapOnCurrentPosition);
+        // Setup event listener to call the callback when the map is fully loaded.
+        google.maps.event.addListenerOnce(this.map, 'tilesloaded', mapLoadedCallback);
 
+        // Set mapIsSetup to true to avoid re-rendering the map.
+        this.setState({mapIsSetup: true});
+    }
+
+    // Setsup a polypath with an optional provided serialized path.
+    createPolyPath() {
         // Initialize the polyline, and add it to the map.
         this.poly = new google.maps.Polyline({
             // strokeColor: "#F15025",
@@ -133,6 +154,21 @@ export default class RouteBuilder extends React.Component {
         });
         this.poly.setMap(this.map);
 
+        if (this.state.serializedRoute){
+            this.poly.setPath(google.maps.geometry.encoding.decodePath(this.state.serializedRoute));
+
+            // Center the map around the path.
+            const bounds = new google.maps.LatLngBounds();
+            this.poly.getPath().forEach(coor => bounds.extend(coor));
+            this.map.fitBounds(bounds);
+
+            // This calculates and renders the total miles, and sets the starting marker.
+            this.polyPathChanged()
+        } else {
+            // Center map on user's current location.
+            navigator.geolocation.getCurrentPosition(this.centerMapOnCurrentPosition);
+        }
+
         // Listen to changes to the poliLine's path.
         google.maps.event.addListener(this.poly, "dragend", this.polyPathChanged);
         google.maps.event.addListener(this.poly.getPath(), "insert_at", this.polyPathChanged);
@@ -141,9 +177,6 @@ export default class RouteBuilder extends React.Component {
 
         // Add click event listener for the map.
         this.map.addListener("click", this.handleMapClick);
-
-        // Set mapIsSetup to true to avoid re-rendering the map.
-        this.setState({mapIsSetup: true});
     }
 
     centerMapOnCurrentPosition(pos){
@@ -152,7 +185,7 @@ export default class RouteBuilder extends React.Component {
     }
 
     // Handles chanes to the polypath, and updates markers and miles.
-    polyPathChanged(idx){
+    polyPathChanged(){
         const path = this.poly.getPath();
         this.setState({
             totalMiles: Number.parseFloat(
@@ -173,10 +206,17 @@ export default class RouteBuilder extends React.Component {
             this.startMarker.setPosition(path.Lb[0]);
             this.startMarker.setMap(this.map);
         }
+        
+        if (this.poly.getPath().length){
+            this.setState({emptyPath: false});
+        } else {
+            // Remove the start marker, and update state if the path is empty.
+            this.startMarker.setMap(null);
+            this.setState({ emptyPath: true });
+        }
     }
 
     handleMapClick(e){
-        this.setState({emptyPath: false});
         const path = this.poly.getPath();
         path.push(e.latLng);
     }

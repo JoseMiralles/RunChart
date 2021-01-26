@@ -39,7 +39,7 @@ export default class Footer extends React.Component {
                 </div>
                 <div className="logo-container">
                     <h3 className="logo flex-horizontal">
-                        <i class="material-icons">near_me</i>
+                        <i className="material-icons">near_me</i>
                         RunChart
                     </h3>
                 </div>

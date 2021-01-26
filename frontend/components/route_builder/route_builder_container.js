@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { createRoute } from "../../actions/routes_actions";
 
-
 import RouteBuilder from "./route_builder";
 
 const ms = (state) => ({

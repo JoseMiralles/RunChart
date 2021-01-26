@@ -11,7 +11,8 @@ export default class RouteBuilder extends React.Component {
             emptyPath: true,
             totalMiles: 0,
             // serializedRoute: this.props.route ? this.props.route.route : null,
-            serializedRoute: null 
+            serializedRoute: null,
+            route: {name: ""}
         }
 
         this.handleMapClick = this.handleMapClick.bind(this);

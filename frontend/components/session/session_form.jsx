@@ -12,7 +12,7 @@ export default class SessionForm extends React.Component {
 
     render() {
         return (
-            <div className="session-form-page">
+            <div className="session-form-page container">
                 <div className="session-form-container">
                     <h1>{this.props.formType}</h1>
 

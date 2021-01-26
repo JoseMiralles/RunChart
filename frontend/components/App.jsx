@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import Footer from "./footer";
 import HomeScreenContainer from "./home_screen/home_screen_container";
 import NavBar from "./navigation/nav_bar";
 import RouteShowContainer from "./routes/show/route_show_container";
@@ -11,7 +12,6 @@ import SignupFormContainer from "./session/signup_form_container";
 
 const App = () => (
     <>
-
         <NavBar />
 
         <Route exact path="/" component={HomeScreenContainer} />
@@ -28,6 +28,8 @@ const App = () => (
             {/* View Route */}
             <Route exact path="/routes/:routeId" component={RouteShowContainer} />
         </Switch>
+
+        <Footer />
     </>
 );
 

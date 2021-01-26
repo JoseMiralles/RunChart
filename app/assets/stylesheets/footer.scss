@@ -1,0 +1,36 @@
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+
+    padding: 7vh 0vh;
+    color: $light;
+    background: $dark;
+
+    font-style: italic;
+
+    h4 {
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    li{
+        margin-bottom: 10px;
+        color: $main-color;
+    }
+
+    .logo-container{
+        display: flex;
+        align-items: center;
+    }
+    .logo{
+        // color: #0D96D8;
+        font-size: 25px;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 7px;
+        font-style: normal;
+        i {
+            margin-right: 12px;
+            font-size: 19px;
+        }
+    }
+}

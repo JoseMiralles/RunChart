@@ -1,7 +1,3 @@
-.route-show-container{
-
-}
-
 .route-show-map{
     width: 100%;
     height: 50vh;
@@ -47,6 +43,9 @@
     *{
         padding: 0px 10px;
         border-right: solid $dark 1px;
+        &:hover{
+            color: $main-color;
+        }
     }
     *:last-child{
         border-right: none;

@@ -18,6 +18,7 @@ export default class RouteShow extends React.Component{
         }
 
         this.setUpMap = this.setUpMap.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     render(){
@@ -46,13 +47,19 @@ export default class RouteShow extends React.Component{
                 </div>
 
                 <div className="links-container container flex-horizontal">
-                    {/* This is where the EDIT and BOOKMARK links will go. */}
+
+                    {/* Controls go here! */}
                     { isOwner && <Link className="flex-horizontal" to={`/routes/${this.props.routeId}/edit`}>
                         <i className="material-icons">create</i>
                         Edit</Link> }
+
                     { this.props.sessionId && <button className="flex-horizontal">
                         <i className="material-icons">bookmark</i>
                         Bookmark</button> }
+
+                    { isOwner && <button onClick={this.handleDelete} className="flex-horizontal">
+                        <i className="material-icons">delete_forever</i>
+                        Delete</button> }
                 </div>
 
                 <div className="route-show-map" ref="map"></div>
@@ -86,6 +93,16 @@ export default class RouteShow extends React.Component{
                 });
             });
         });
+    }
+
+    handleDelete(){
+        if (window.confirm("Are you sure you want to clear the map?")){
+            this.props.deleteRoute(this.props.routeId).then(
+                this.props.history.replace({
+                    pathname: `/`
+                })
+            );
+        }
     }
 
     setUpMap(mapLoadedCallback){

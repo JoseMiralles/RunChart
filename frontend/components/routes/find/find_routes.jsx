@@ -30,6 +30,7 @@ export default class FindRoutes extends React.Component {
         this.centerMapOnGivenPosition = this.centerMapOnGivenPosition.bind(this);
         this.setUpMap = this.setUpMap.bind(this);
         this.performSearch = this.performSearch.bind(this);
+        this.handleMarkerClick = this.handleMarkerClick.bind(this);
 
         this.service = null;
         this.map = null;
@@ -77,7 +78,7 @@ export default class FindRoutes extends React.Component {
     }
 
     componentDidMount(){
-        this.setUpMap(()=>{ // Calback gets called when the map is fully loaded.
+        this.setUpMap( ()=>{ // Calback gets called when the map is fully loaded.
             // Create placesService
             this.service = new google.maps.places.PlacesService(this.map);
             
@@ -88,21 +89,32 @@ export default class FindRoutes extends React.Component {
             navigator.geolocation.getCurrentPosition(this.centerMapOnGivenPosition);
 
             // Initialize markersManager. This is responsible for updating the markers.
-            this.markersManager = new MarkersManager(this.map);
+            this.markersManager = new MarkersManager(this.map, this.handleMarkerClick);
 
             // Setup "idle" listener. This fires once the map stops moving.
             this.map.addListener("idle", this.performSearch);
-        });
+
+            this.map.addListener("click", (e) => {
+                debugger
+            });
+        } );
     }
 
-    componentDidUpdate(){
-        if (this.markersManager) this.markersManager.updateRoutes(this.props.routes);
+    componentDidUpdate(prevProps){
+        if (prevProps.routes !== this.props.routes){
+            if (this.markersManager) this.markersManager.updateRoutes(this.props.routes);
+        }
     }
 
     handleChange(key){
         return (e) => {
             this.setState({ [key]: e.target.value });
         }
+    }
+
+    handleMarkerClick(id){
+        // this.props.history.push(`/routes/${id}`);
+        window.open(`/#/routes/${id}`);
     }
 
     performSearch(e){

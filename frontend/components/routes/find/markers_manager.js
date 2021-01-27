@@ -1,8 +1,9 @@
 export default class MarkersManager {
     
-    constructor(map){
+    constructor(map, handleMarkerClick){
         this.markers = {};
         this.map = map;
+        this.handleMarkerClick = handleMarkerClick;
     }
 
     updateRoutes(routes){
@@ -23,7 +24,7 @@ export default class MarkersManager {
                         route.startLng
                     )
                 });
-                marker.routeId = route.id;
+                marker.addListener("click", () => this.handleMarkerClick(route.id));
                 this.markers[route.id] = marker;
             }
         });
@@ -35,8 +36,6 @@ export default class MarkersManager {
                 delete this.markers[key];
             }
         });
-
-        debugger
     }
 
 }

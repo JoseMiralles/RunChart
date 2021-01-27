@@ -12,6 +12,7 @@ class Route < ApplicationRecord
             .where("start_lat > ?", filters[:bounds][:southWest][:lat])
             .where("start_lng > ?", filters[:bounds][:southWest][:lng])
             .where("start_lng < ?", filters[:bounds][:northEast][:lng])
+            .limit(10)
         if filters.key?(:name)
             res = res.where("name LIKE ?", "%#{filters[:name]}%")
         end

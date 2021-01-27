@@ -22,6 +22,7 @@ export default class PredefinedLocationsButtons extends React.Component {
 
     handleClick(e){
         const coors = e.target.value.split(",").map(num => parseFloat(num));
+        console.log(coors);
     }
 
 }

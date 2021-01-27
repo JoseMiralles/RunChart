@@ -7,8 +7,6 @@ export default class MapSearchBox extends React.Component {
 
         this.map = props.map;
         this.service = props.service;
-
-        // this.searchMap = this.searchMap.bind(this);
     }
 
     render() {
@@ -24,29 +22,28 @@ export default class MapSearchBox extends React.Component {
     componentDidMount(){
         this.input = this.refs.locationSearchBox;
         this.autocomplete = new google.maps.places.Autocomplete(this.input);
-        this.autocomplete.setFields(["geometry"]);
+        this.autocomplete.setFields(["geometry", "name"]);
+
+        this.marker = new google.maps.Marker({
+            map: this.map,
+            title: ""
+        });
 
         // Listen for when the user selects a place from the autocomplete list.
         this.autocomplete.addListener("place_changed",  function(){
+            const place = this.autocomplete.getPlace();
+            const position = place.geometry.location;
+
+            this.marker.setTitle(place.name);
+            this.marker.setLabel({
+                color: "black",
+                fontWeight: "bold",
+                text: place.name
+            })
+            this.marker.setPosition(position);
+            this.map.setCenter(position);
             debugger
-            const viewPort = this.autocomplete.getPlace().geometry.location;
-            this.map.setCenter(viewPort);
         }.bind(this));
     }
-
-    // This handles the map search box.
-    // searchMap(e) {
-    //     e.preventDefault();
-    //     const request = {
-    //         query: this.refs.locationSearchBox.value, // This is what has to change
-    //         fields: ["geometry"]
-    //     };
-    //     this.service.findPlaceFromQuery(request, function (results, status) {
-    //         if (status === google.maps.places.PlacesServiceStatus.OK) {
-    //             debugger
-    //             this.map.panToBounds(results[0].geometry.viewport)
-    //         }
-    //     }.bind(this));
-    // }
 
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { googleMapStyles } from "../../scripts/googleMapsUtils";
 
 export default class RouteBuilder extends React.Component {
@@ -108,8 +108,8 @@ export default class RouteBuilder extends React.Component {
                 creatorId: this.props.creatorId,
                 name: name,
                 route: google.maps.geometry.encoding.encodePath(this.poly.getPath()),
-                startLat: this.poly.getPath().Lb[0].lat(),
-                startLng: this.poly.getPath().Lb[0].lng()
+                startLat: this.poly.getPath().getArray()[0].lat(),
+                startLng: this.poly.getPath().getArray()[0].lng()
             };
             if (this.props.routeId) route.id = this.props.routeId;
             this.props.action(route).then((savedRoute) => {
@@ -186,7 +186,7 @@ export default class RouteBuilder extends React.Component {
 
     // Handles chanes to the polypath, and updates markers and miles.
     polyPathChanged(){
-        const path = this.poly.getPath();
+        const path = this.poly.getPath().getArray();
         this.setState({
             totalMiles: Number.parseFloat(
                 google.maps.geometry.spherical.computeLength(path) / 1600
@@ -195,7 +195,7 @@ export default class RouteBuilder extends React.Component {
 
         if (!this.startMarker) {
             this.startMarker = new google.maps.Marker({
-                position: path.Lb[0],
+                position: path[0],
                 title: "START",
                 map: this.map,
             });
@@ -203,7 +203,7 @@ export default class RouteBuilder extends React.Component {
                 this.poly.getPath().push(this.startMarker.getPosition());
             });
         } else {
-            this.startMarker.setPosition(path.Lb[0]);
+            this.startMarker.setPosition(path[0]);
             this.startMarker.setMap(this.map);
         }
         

@@ -10,6 +10,7 @@
 
 import React from "react";
 import { googleMapStyles } from "../../../scripts/googleMapsUtils";
+import MapSearchBox from "./MapSearchBox";
 import PredefinedLocationsButtons from "./predefined_locations_buttons";
 
 export default class FindRoutes extends React.Component {
@@ -28,7 +29,10 @@ export default class FindRoutes extends React.Component {
         this.centerMapOnGivenPosition = this.centerMapOnGivenPosition.bind(this);
         this.setUpMap = this.setUpMap.bind(this);
         this.performSearch = this.performSearch.bind(this);
-        this.searchMap = this.searchMap.bind(this);
+
+        this.service = null;
+        this.map = null;
+        this.infoWindow = null;
     }
 
     render(){
@@ -50,12 +54,14 @@ export default class FindRoutes extends React.Component {
                 </div>
                 
                 <div className="search-map-wrapper">
-                    {/* Map location search form */}
-                    <form onSubmit={this.searchMap} className="flex-horizontal">
-                        <label htmlFor="map-search-box">Near:</label>
-                        <input id="map-search-box" type="text" placeholder="City, state, or zip"/>
-                        <button className="btn btn-main">GO</button>
-                    </form>
+
+                    {/* Map location search Box */}
+                    { this.state.mapIsRendered &&
+                        <MapSearchBox
+                        map={this.map}
+                        service={this.service}
+                        />
+                    }
 
                     <div className="search-map" ref="map">
                     </div>
@@ -71,6 +77,9 @@ export default class FindRoutes extends React.Component {
 
     componentDidMount(){
         this.setUpMap(()=>{ // Calback gets called when the map is fully loaded.
+            // Create placesService
+            this.service = new google.maps.places.PlacesService(this.map);
+            
             // Map is now loaded, update state.
             this.setState({mapIsRendered: true});
 
@@ -82,11 +91,6 @@ export default class FindRoutes extends React.Component {
         });
     }
 
-    // This s
-    searchMap(e){
-        e.preventDefault();
-    }
-
     handleChange(key){
         return (e) => {
             this.setState({ [key]: e.target.value });
@@ -95,7 +99,7 @@ export default class FindRoutes extends React.Component {
 
     performSearch(e){
         e && e.preventDefault();
-        // Re-center the map to the queried location, if one is given.
+        // TODO: Prevent search if the map is zoomed too far out, and add message to screen.
         const northEast = this.map.getBounds().getNorthEast();
         const southWest = this.map.getBounds().getSouthWest();
         const filters = {

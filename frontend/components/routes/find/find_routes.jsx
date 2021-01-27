@@ -11,6 +11,7 @@
 import React from "react";
 import { googleMapStyles } from "../../../scripts/googleMapsUtils";
 import MapSearchBox from "./MapSearchBox";
+import MarkersManager from "./markers_manager";
 import PredefinedLocationsButtons from "./predefined_locations_buttons";
 
 export default class FindRoutes extends React.Component {
@@ -19,7 +20,7 @@ export default class FindRoutes extends React.Component {
         super(props);
 
         this.state = {
-            name: "test",
+            name: "",
             location: "",
             locationInput: "",
             mapIsRendered: false
@@ -45,7 +46,7 @@ export default class FindRoutes extends React.Component {
                     {/* Query search form */}
                     <form onSubmit={this.performSearch} className="flex-horizontal">
                         <label htmlFor="query-search-box">Search By Name</label>
-                        <input id="query-search-box" onChange={this.handleChange}
+                        <input id="query-search-box" onChange={this.handleChange("name")}
                             key={"name"} type="text"
                             placeholder="Search by Name or Query"
                         />
@@ -67,9 +68,9 @@ export default class FindRoutes extends React.Component {
                     </div>
                 </div>
 
-                <PredefinedLocationsButtons
+                {/* <PredefinedLocationsButtons
                     centerMapOnGivenPosition={this.centerMapOnGivenPosition}
-                />
+                /> */}
 
             </div>
         );
@@ -86,9 +87,16 @@ export default class FindRoutes extends React.Component {
             // Center map on user's current location.
             navigator.geolocation.getCurrentPosition(this.centerMapOnGivenPosition);
 
+            // Initialize markersManager. This is responsible for updating the markers.
+            this.markersManager = new MarkersManager(this.map);
+
             // Setup "idle" listener. This fires once the map stops moving.
             this.map.addListener("idle", this.performSearch);
         });
+    }
+
+    componentDidUpdate(){
+        if (this.markersManager) this.markersManager.updateRoutes(this.props.routes);
     }
 
     handleChange(key){

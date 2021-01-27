@@ -13,7 +13,8 @@ export default class MapSearchBox extends React.Component {
         return (
             <div className="map-search-box flex-horizontal">
                 <label htmlFor="map-search-box">Near:</label>
-                <input ref="locationSearchBox" id="map-search-box" type="text" placeholder="City, state, or zip" />
+                <input ref="locationSearchBox" id="map-search-box" type="text"
+                placeholder="Try:  San Francisco, CA...  New York, NY...  San Antonio, TX..." />
                 {/* <button className="btn btn-main">GO</button> */}
             </div>
         );
@@ -36,7 +37,7 @@ export default class MapSearchBox extends React.Component {
 
             this.marker.setTitle(place.name);
             this.marker.setLabel({
-                color: "black",
+                color: "grey",
                 fontWeight: "bold",
                 text: place.name
             })

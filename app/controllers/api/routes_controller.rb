@@ -26,7 +26,7 @@ class Api::RoutesController < ApplicationController
     end
 
     def index
-        @routes = Route.all
+        @routes = Route.get_filtered(route_filters)
         render "api/routes/index"
     end
 
@@ -49,6 +49,10 @@ class Api::RoutesController < ApplicationController
             :start_lat,
             :start_lng
         )
+    end
+
+    def route_filters
+        params[:filters]
     end
 
 end

@@ -1,8 +1,9 @@
 
-export const fetchRoutes = () => (
+export const fetchRoutes = (filters) => (
     $.ajax({
         method: "GET",
-        url: "/api/routes"
+        url: "/api/routes",
+        data: { filters }
     })
 );
 

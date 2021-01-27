@@ -21,8 +21,8 @@ export const removeRoute = (routeId) => ({
 
 
 
-export const fetchRoutes = () => (dispatch) => (
-    api.fetchRoutes()
+export const fetchRoutes = (filters) => (dispatch) => (
+    api.fetchRoutes(filters)
     .then(routes => dispatch(receiveAllRoutes(routes)))
 );
 

@@ -7,11 +7,15 @@ class Route < ApplicationRecord
         class_name: :User
 
     # Gets all of the routes withing the given South-West, and North-East points.
-    def self.select_in_bounds (bounds)
-        self.where("lat < ?", bounds[:northEast][:lat])
-            .where("lat > ?", bounds[:southWest][:lat])
-            .where("lng > ?", bounds[:southWest][:lng])
-            .where("lng < ?", bounds[:northEast][:lng])
+    def self.get_filtered (filters)
+        res = self.where("start_lat < ?", filters[:bounds][:northEast][:lat])
+            .where("start_lat > ?", filters[:bounds][:southWest][:lat])
+            .where("start_lng > ?", filters[:bounds][:southWest][:lng])
+            .where("start_lng < ?", filters[:bounds][:northEast][:lng])
+        if filters.key?(:name)
+            res = res.where("name LIKE ?", "%#{filters[:name]}%")
+        end
+        return res;
     end
 
 end

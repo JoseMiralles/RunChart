@@ -96,7 +96,7 @@ export default class RouteShow extends React.Component{
     }
 
     handleDelete(){
-        if (window.confirm("Are you sure you want to clear the map?")){
+        if (window.confirm("Are you sure you want to delete this route?")){
             this.props.deleteRoute(this.props.routeId).then(
                 this.props.history.replace({
                     pathname: `/`
@@ -115,7 +115,8 @@ export default class RouteShow extends React.Component{
             zoom: 14,
             disableDefaultUI: true,
             // zoomControl: true,
-            styles: googleMapStyles
+            styles: googleMapStyles,
+            gestureHandling: "cooperative"
         };
         this.map = new google.maps.Map(this.refs.map, mapOptions);
 

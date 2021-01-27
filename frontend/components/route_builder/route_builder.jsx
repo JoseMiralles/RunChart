@@ -102,7 +102,6 @@ export default class RouteBuilder extends React.Component {
     }
 
     handleSave(){
-
         const name = prompt("Give your new route a name.", this.state.route.name);
         if (name){
             const route = {

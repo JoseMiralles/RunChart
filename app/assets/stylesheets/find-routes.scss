@@ -1,8 +1,61 @@
 .find-routes-container{
     
+    label{
+        display: none;
+    }
+
+    input {
+        margin-right: 10px;
+    }
+
+    input, .btn {
+        padding: 12px 16px;
+        border-radius: 3px;
+    }
+}
+
+.title-and-searchbox, .search-map-wrapper{
+    .btn {
+        border: solid 1px $main-color;
+    }
+}
+
+.title-and-searchbox{
+    padding: 15px;
+    & > * {
+        padding: 9px 0px;
+    }
 }
 
 .search-map {
     width: 100%;
     min-height: 50vh;
+}
+
+.search-map-wrapper{
+    position: relative;
+
+    form{
+        position: absolute;
+        bottom: 0px;
+        z-index: 9;
+        margin: auto;
+        padding: 15px;
+        width: -webkit-fill-available;
+
+        input{
+            background: white;
+        }
+    }
+}
+
+.predefined-locations-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    background: $light-secondary;
+
+    .btn:hover{
+        background: $light;
+    }
 }

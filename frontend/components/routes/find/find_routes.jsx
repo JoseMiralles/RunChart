@@ -10,6 +10,7 @@
 
 import React from "react";
 import { googleMapStyles } from "../../../scripts/googleMapsUtils";
+import PredefinedLocationsButtons from "./predefined_locations_buttons";
 
 export default class FindRoutes extends React.Component {
 
@@ -18,6 +19,7 @@ export default class FindRoutes extends React.Component {
 
         this.state = {
             name: "test",
+            location: "",
             locationInput: "",
             mapIsRendered: false
         };
@@ -25,23 +27,43 @@ export default class FindRoutes extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.centerMapOnGivenPosition = this.centerMapOnGivenPosition.bind(this);
         this.setUpMap = this.setUpMap.bind(this);
-        this.handleMapIdle = this.handleMapIdle.bind(this);
+        this.performSearch = this.performSearch.bind(this);
+        this.searchMap = this.searchMap.bind(this);
     }
 
     render(){
         return(
             <div className="find-routes-container container">
 
-                <form onSubmit={this.performSearch}>
-                    <label>Search By Name
-                        <input onChange={this.handleChange}
-                        key={"name"} type="text"
-                        placeHolder="Name or Query"
-                        />
-                    </label>
-                </form>
+                <div className="title-and-searchbox">
+                    <h1>Find Routes</h1>
 
-                <div className="search-map" ref="map"></div>
+                    {/* Query search form */}
+                    <form onSubmit={this.performSearch} className="flex-horizontal">
+                        <label htmlFor="query-search-box">Search By Name</label>
+                        <input id="query-search-box" onChange={this.handleChange}
+                            key={"name"} type="text"
+                            placeholder="Search by Name or Query"
+                        />
+                        <button className="btn btn-main">SEARCH</button>
+                    </form>
+                </div>
+                
+                <div className="search-map-wrapper">
+                    {/* Map location search form */}
+                    <form onSubmit={this.searchMap} className="flex-horizontal">
+                        <label htmlFor="map-search-box">Near:</label>
+                        <input id="map-search-box" type="text" placeholder="City, state, or zip"/>
+                        <button className="btn btn-main">GO</button>
+                    </form>
+
+                    <div className="search-map" ref="map">
+                    </div>
+                </div>
+
+                <PredefinedLocationsButtons
+                    centerMapOnGivenPosition={this.centerMapOnGivenPosition}
+                />
 
             </div>
         );
@@ -56,12 +78,24 @@ export default class FindRoutes extends React.Component {
             navigator.geolocation.getCurrentPosition(this.centerMapOnGivenPosition);
 
             // Setup "idle" listener. This fires once the map stops moving.
-            this.map.addListener("idle", this.handleMapIdle);
+            this.map.addListener("idle", this.performSearch);
         });
     }
 
-    // This method fetches the routes.
-    handleMapIdle(){
+    // This s
+    searchMap(e){
+        e.preventDefault();
+    }
+
+    handleChange(key){
+        return (e) => {
+            this.setState({ [key]: e.target.value });
+        }
+    }
+
+    performSearch(e){
+        e && e.preventDefault();
+        // Re-center the map to the queried location, if one is given.
         const northEast = this.map.getBounds().getNorthEast();
         const southWest = this.map.getBounds().getSouthWest();
         const filters = {
@@ -72,17 +106,6 @@ export default class FindRoutes extends React.Component {
         }
         if (this.state.name) filters.name = this.state.name;
         this.props.fetchRoutes(filters);
-    }
-
-    handleChange(key){
-        return (e) => {
-            this.setState({ [key]: e.target.value });
-        }
-    }
-
-    performSearch(e){
-        e.preventDefault();
-        // Re-center the map to the queried location, if one is given.
     }
 
     // Sets up and renders the map, and calls the callback once it's rendered.

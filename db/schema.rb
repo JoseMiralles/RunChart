@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_150614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["route_id"], name: "index_bookmarks_on_route_id"
+    t.index ["user_id", "route_id"], name: "index_bookmarks_on_user_id_and_route_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 

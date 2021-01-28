@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#        api_user_bookmarks GET    /api/user/:user_id/bookmarks(.:format)                                                   api/bookmarks#index {:format=>:json}
 #            api_user_index POST   /api/user(.:format)                                                                      api/user#create {:format=>:json}
 #                  api_user GET    /api/user/:id(.:format)                                                                  api/user#show {:format=>:json}
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>:json}
@@ -11,6 +12,9 @@
 #                           PATCH  /api/routes/:id(.:format)                                                                api/routes#update {:format=>:json}
 #                           PUT    /api/routes/:id(.:format)                                                                api/routes#update {:format=>:json}
 #                           DELETE /api/routes/:id(.:format)                                                                api/routes#destroy {:format=>:json}
+#             api_bookmarks POST   /api/bookmarks(.:format)                                                                 api/bookmarks#create {:format=>:json}
+#              api_bookmark GET    /api/bookmarks/:id(.:format)                                                             api/bookmarks#show {:format=>:json}
+#                           DELETE /api/bookmarks/:id(.:format)                                                             api/bookmarks#destroy {:format=>:json}
 #                      root GET    /                                                                                        static_pages#root
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -19,13 +23,15 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api, defaults: {format: :json} do
-    resources :user, only: [:create, :show]
+    resources :user, only: [:create, :show] do
+      resources :bookmarks, only: [:index]
+    end
     resource :session, only: [:create, :destroy]
     resources :routes, only: [:create, :destroy, :index, :show, :update]
+    resources :bookmarks, only: [:show, :create, :destroy]
   end
 
   root "static_pages#root"

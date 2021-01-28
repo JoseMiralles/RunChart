@@ -24,6 +24,15 @@ const HomeScreen = (props) => {
                     <h3>CREATE YOUR OWN ROUTE</h3>
                     <Link className="btn btn-main" to="/routes/new">Create Route</Link>
                 </div>
+
+                <div className="svg-container">
+                <svg className="top-svg" id="poly_3" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polygon points="0,0 0,66 100,100 100,33">
+                    </polygon>
+                </svg>
+
+            </div>
+
             </div>
 
             <div className="find-route-section">
@@ -36,7 +45,7 @@ const HomeScreen = (props) => {
                         Search specifics, find popular routes, and save your favorites.
                     </p>
                     <h3>FIND NEW ROUTES</h3>
-                    <Link className="btn btn-main" to="/routes/new">Find Routes</Link>
+                    <Link className="btn btn-main" to="/routes/find">Find Routes</Link>
                 </div>
             </div>
 

@@ -25,7 +25,16 @@ const Greeting = (props) => {
                     <span>already a member?</span>
                     <Link className="btn btn-outline inline" to="/login">Login</Link>
                 </div>
+
             </div>
+
+            <div className="svg-container">
+                <svg className="top-svg" id="poly_3" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <polygon points="0,33 0,100 100,66 100,0">
+                    </polygon>
+                </svg>
+            </div>
+
         </div>
     );
 }

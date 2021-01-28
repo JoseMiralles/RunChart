@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { googleMapStyles } from "../../../scripts/googleMapsUtils";
+import BookmarkLinkContainer from "./bookmark_link_container";
 
 export default class RouteShow extends React.Component{
 
@@ -48,17 +49,16 @@ export default class RouteShow extends React.Component{
                 <div className="links-container container flex-horizontal">
 
                     {/* Controls go here! */}
+                    { this.props.sessionId && <BookmarkLinkContainer routeId={this.props.routeId}/> }
+
                     { isOwner && <Link className="flex-horizontal" to={`/routes/${this.props.routeId}/edit`}>
                         <i className="material-icons">create</i>
                         Edit</Link> }
 
-                    { this.props.sessionId && <button className="flex-horizontal">
-                        <i className="material-icons">bookmark</i>
-                        Bookmark</button> }
-
                     { isOwner && <button onClick={this.handleDelete} className="flex-horizontal">
                         <i className="material-icons">delete_forever</i>
                         Delete</button> }
+                
                 </div>
 
                 <div className="route-show-map" ref="map"></div>

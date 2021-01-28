@@ -36,7 +36,7 @@ class Api::BookmarksController < ApplicationController
   def show
     @bookmark = Bookmark.find_by(user_id: current_user.id, route_id: params[:id])
     if @bookmark
-      render json: @bookmark
+      render json: "true"
     else
       render json: "false"
     end

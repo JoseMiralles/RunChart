@@ -11,6 +11,7 @@ import RouteBuilderContainer from "./route_builder/route_builder_container";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import FindRoutesContainer from "./routes/find/find_routes_container";
+import MyRoutesContainer from "./routes/user/my_routes_container";
 
 const App = () => (
     <>
@@ -23,6 +24,8 @@ const App = () => (
         <AuthRoute exact path="/signup" component={SignupFormContainer}/>
 
         <Switch>
+            <ProtectedRoute path="/my_routes" component={MyRoutesContainer} />
+
             {/* Redirect user to signup page if they are aren't logged in. */}
             <ProtectedRoute exact path="/routes/new" component={RouteBuilderContainer} />
             <ProtectedRoute exact path="/routes/find" component={FindRoutesContainer} />

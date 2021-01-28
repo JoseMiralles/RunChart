@@ -1,4 +1,5 @@
 import * as api from "../util/routes_api_util";
+import { fetchBookmarkedRoutes as fetchBookmarkedRoutesAPI } from "../util/bookmarks_api_util";
 
 export const RECEIVE_ALL_ROUTES = "RECEIVE_ALL_ROUTES";
 export const RECEIVE_ROUTE = "RECEIVE_ROUTE";
@@ -32,7 +33,7 @@ export const fetchRoute = (id) => (dispatch) => (
 );
 
 export const fetchBookmarkedRoutes = (userId) => (dispatch) => (
-    api.fetchBookmarkedRoutes(userId).then(routes => 
+    fetchBookmarkedRoutesAPI(userId).then(routes => 
         dispatch(receiveAllRoutes(routes)))
 );
 

@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-
 User.create!([
     {username: "TimBernersLee", email: "TimBernersLee@runner.com", password: "123456", first_name:"Tim", last_name:"Berners-Lee"},
     {username: "AdaLovelace", email: "AdaLovelace@runner.com", password: "123456", first_name:"Ada", last_name:"LoveLace"},
@@ -18,7 +17,6 @@ User.create!([
 users = User.all;
 
 Route.destroy_all
-
 Route.create!([
     {creator_id: users[0].id,
     name: "2 miler, Van Ness Ave",
@@ -80,4 +78,19 @@ Route.create!([
     start_lat: 40.714365571297485,
     start_lng: -73.99250265739565
     }
+])
+
+routes = Route.all
+
+Bookmark.destroy_all
+Bookmark.create!([
+    { user_id: users[3].id, route_id: routes[0].id },
+    { user_id: users[2].id, route_id: routes[1].id },
+    { user_id: users[1].id, route_id: routes[2].id },
+    { user_id: users[0].id, route_id: routes[3].id },
+    { user_id: users[0].id, route_id: routes[4].id },
+    { user_id: users[0].id, route_id: routes[5].id },
+    { user_id: users[0].id, route_id: routes[6].id },
+    { user_id: users[0].id, route_id: routes[7].id },
+    { user_id: users[0].id, route_id: routes[8].id },
 ])

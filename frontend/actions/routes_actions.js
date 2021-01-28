@@ -31,6 +31,16 @@ export const fetchRoute = (id) => (dispatch) => (
     .then(route => dispatch(receiveRoute(route)))
 );
 
+export const fetchBookmarkedRoutes = (userId) => (dispatch) => (
+    api.fetchBookmarkedRoutes(userId).then(routes => 
+        dispatch(receiveAllRoutes(routes)))
+);
+
+export const fetchUserRoutes = (userId) => (dispatch) => (
+    api.fetchUserRoutes(userId).then(routes => 
+        dispatch(receiveAllRoutes(routes)))
+);
+
 export const createRoute = (newRoute) => (dispatch) => (
     api.createRoute(newRoute)
     .then(route => dispatch(receiveRoute(route)))

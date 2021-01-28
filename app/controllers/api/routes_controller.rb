@@ -26,7 +26,12 @@ class Api::RoutesController < ApplicationController
     end
 
     def index
-        @routes = Route.get_filtered(route_filters)
+        @routes
+        if (route_filters)
+            @routes = Route.get_filtered(route_filters)
+        elsif (params[:userId])
+            @routes = User.find(params[:userId]).routes
+        end
         render "api/routes/index"
     end
 

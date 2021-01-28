@@ -8,6 +8,10 @@ class User < ApplicationRecord
   
     after_initialize :ensure_session_token
 
+    has_many :routes,
+      foreign_key: :creator_id,
+      class_name: :Route
+
     has_many :bookmarks,
       foreign_key: :user_id,
       class_name: :Bookmark

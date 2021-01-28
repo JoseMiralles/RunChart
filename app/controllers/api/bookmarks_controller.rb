@@ -16,15 +16,17 @@ class Api::BookmarksController < ApplicationController
     end
   end
 
+  # Expects :id to be the id of the Route to be unbookmarked.
   def destroy
-    @bookmark.find(params[:id])
+    @bookmark = Bookmark.find_by(user_id: current_user.id, route_id: params[:id])
 
+    # Check if the current user is the owner of the bookmark.
     # if @bookmark.user_id != current_user.id
-    #   render json: "You are not the owner!"
+    #   render json: "Denied"
     # end
 
     if @bookmark.destroy
-      render "true"
+      render json: @bookmark
     else
       render json @bookmark.errors.full_messages, status: 422
     end
@@ -34,7 +36,7 @@ class Api::BookmarksController < ApplicationController
   def show
     @bookmark = Bookmark.find_by(user_id: current_user.id, route_id: params[:id])
     if @bookmark
-      render json: "true"
+      render json: @bookmark
     else
       render json: "false"
     end

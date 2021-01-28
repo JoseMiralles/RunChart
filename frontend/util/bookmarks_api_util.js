@@ -21,3 +21,10 @@ export const bookmarkRoute = (routeId) => (
         data: { route_id: routeId }
     })
 );
+
+export const unBookmarkRoute = (routeId) => (
+    $.ajax({
+        method: "DELETE",
+        url: `/api/bookmarks/${routeId}`
+    })
+);

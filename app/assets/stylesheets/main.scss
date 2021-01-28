@@ -47,7 +47,7 @@ p, span {
 .container {
     max-width: 980px;
     margin:auto;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .bold{
@@ -126,6 +126,32 @@ p, span {
 .flex-horizontal{
     display: flex;
     align-items: center;
+}
+
+.tabs{
+    display: flex;
+    justify-content: flex-start;
+
+    .selected{
+        border-top: solid $main-color 3px;
+    }
+    li{
+        font-weight: bold;
+        padding: 25px;
+        border: solid $light-secondary 1px;
+        border-bottom: none;
+        &:hover{
+            background: $light-secondary;
+        }
+    }
+    .line{
+        border: none;
+        border-bottom: solid $light-secondary 1px;
+        width: -webkit-fill-available;
+        &:hover{
+            background: none;
+        }
+    }
 }
 
 

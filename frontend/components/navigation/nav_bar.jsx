@@ -21,6 +21,7 @@ export default class NavBar extends React.Component {
                 <div className="center">
                     <Link to="/routes/new">Create Route</Link>
                     <Link to="/routes/find">Find Routes</Link>
+                    <Link to="/my_routes">My Routes</Link>
                 </div>
                 <div className="right">
                     <NavGreetingContainer/>

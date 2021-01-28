@@ -20,6 +20,9 @@ export default class MyRoutes extends React.Component {
         return(
             <div className="my-routes-container container">
 
+                <h1>My Routes</h1>
+                <br/><br/>
+
                 <ul onClick={this.tabSelected} className="tabs">
                     <li
                     className={selected === this.flags.user && "selected"}
@@ -27,6 +30,7 @@ export default class MyRoutes extends React.Component {
                     <li
                     className={selected === this.flags.bookmarks && "selected"}
                     action={this.flags.bookmarks}>Bookmarked</li>
+                    <li className='line'></li>
                 </ul>
 
                 <RoutesTable routes={this.props.routes} />

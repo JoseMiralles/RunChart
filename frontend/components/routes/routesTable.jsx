@@ -38,7 +38,7 @@ export default class RoutesTable extends React.Component {
                 <tr key={route.id}>
                     <td>{distance} mi</td>
                     <td><Link to={`/routes/${route.id}`}>{route.name}</Link></td>
-                    <td>{route.updatedAt}</td>
+                    <td>{new Date(route.updatedAt).toLocaleDateString()}</td>
                 </tr>
             )
         })

@@ -1,0 +1,27 @@
+.routes-table {
+    padding: 23px 0px;
+
+    table {
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #ddd;
+        padding: 17px;
+    }
+
+    th {
+        background: $light-secondary;
+        color: $dark;
+        text-align: left;
+    }
+
+    tr:hover {
+        background: $light-secondary;
+    }
+
+    a {
+        color: $main-color;
+        font-weight: 600;
+    }
+}

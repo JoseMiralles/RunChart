@@ -134,6 +134,7 @@ export default class RouteBuilder extends React.Component {
             styles: googleMapStyles
         };
         this.map = new google.maps.Map(this.refs.map, mapOptions);
+        window.map = this.map;
 
         // Setup event listener to call the callback when the map is fully loaded.
         google.maps.event.addListenerOnce(this.map, 'tilesloaded', mapLoadedCallback);

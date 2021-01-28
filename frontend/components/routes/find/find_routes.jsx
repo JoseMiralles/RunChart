@@ -10,6 +10,7 @@
 
 import React from "react";
 import { googleMapStyles } from "../../../scripts/googleMapsUtils";
+import RoutesTable from "../routesTable";
 import MapSearchBox from "./MapSearchBox";
 import MarkersManager from "./markers_manager";
 import PredefinedLocationsButtons from "./predefined_locations_buttons";
@@ -73,6 +74,8 @@ export default class FindRoutes extends React.Component {
                     centerMapOnGivenPosition={this.centerMapOnGivenPosition}
                 /> */}
 
+                {this.props.routes && <RoutesTable routes={this.props.routes} />}
+
             </div>
         );
     }
@@ -93,10 +96,6 @@ export default class FindRoutes extends React.Component {
 
             // Setup "idle" listener. This fires once the map stops moving.
             this.map.addListener("idle", this.performSearch);
-
-            this.map.addListener("click", (e) => {
-                debugger
-            });
         } );
     }
 

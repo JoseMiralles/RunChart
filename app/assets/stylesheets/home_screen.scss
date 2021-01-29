@@ -2,7 +2,6 @@
 
     p{
         line-height: 25px;
-        margin: 57px 0px;
     }
     
     h3{
@@ -17,7 +16,7 @@
         padding: 55px;
 
         & > * {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         h1{
@@ -32,6 +31,7 @@
 
         &:last-of-type {
             width: 200px;
+            margin-bottom: 57px;
         }
     }
 

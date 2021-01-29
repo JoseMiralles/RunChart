@@ -18,10 +18,10 @@ const HomeScreen = (props) => {
                     <h1>BLAZE NEW TRAILS</h1>
                     <hr className="weird_line"></hr>
 
+                    <h3>CREATE YOUR OWN ROUTE</h3>
                     <p className="half">
                         Stay safe, plan logistics, and know the terrain.
                     </p>
-                    <h3>CREATE YOUR OWN ROUTE</h3>
                     <Link className="btn btn-main" to="/routes/new">Create Route</Link>
                 </div>
 
@@ -41,10 +41,10 @@ const HomeScreen = (props) => {
                     <h1>EXPLORE CITY ROUTES</h1>
                     <hr className="weird_line"></hr>
                     
+                    <h3>FIND NEW ROUTES</h3>
                     <p className="half">
                         Search specifics, find popular routes, and save your favorites.
                     </p>
-                    <h3>FIND NEW ROUTES</h3>
                     <Link className="btn btn-main" to="/routes/find">Find Routes</Link>
                 </div>
             </div>

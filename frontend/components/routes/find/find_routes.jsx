@@ -47,10 +47,10 @@ export default class FindRoutes extends React.Component {
 
                     {/* Query search form */}
                     <form onSubmit={this.performSearch} className="flex-horizontal">
-                        <label htmlFor="query-search-box">Search By Name</label>
+                        <label htmlFor="query-search-box">Filter By Name</label>
                         <input id="query-search-box" onChange={this.handleChange("name")}
                             key={"name"} type="text"
-                            placeholder="Search by Name or Query"
+                            placeholder="Filter By Name"
                         />
                         <button className="btn btn-main">SEARCH</button>
                     </form>

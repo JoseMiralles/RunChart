@@ -11,6 +11,8 @@ const Greeting = (props) => {
                 <h1>OWN EVERY MILE</h1>
                 <hr className="weird_line"></hr>
 
+                <h3>JOIN THE COMMUNITY</h3>
+
                 <p className="half">
                     Draw your routes before every workout.
                     Get important metrics such as total miles.

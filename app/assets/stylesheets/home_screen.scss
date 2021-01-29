@@ -2,7 +2,7 @@
 
     p{
         line-height: 25px;
-        margin: 20px 0px;
+        margin: 57px 0px;
     }
     
     h3{
@@ -21,7 +21,7 @@
         }
 
         h1{
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
     }
 
@@ -29,7 +29,10 @@
         border-bottom: 5px solid $light;
         width: 100px;
         margin: 0;
-        display: none;
+
+        &:last-of-type {
+            width: 200px;
+        }
     }
 
     .svg-container{

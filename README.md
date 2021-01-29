@@ -39,5 +39,10 @@ These can then simply be stored into a string column in the data base. And then 
 
 # How are routes searched for?
 
-The `Routes` table has `start_lat` and `start_lng` float columns. These values represent the latitude, and longitude of the first node in a polyline.
+The `Routes` table has a `start_lat` and a `start_lng` float column. These values represent the latitude, and longitude of the first node in a polyline.
 
+The North East, and South West points of the map are then used as filters to only show routes with starting points within the map bounds.
+
+![Route Finder](https://github.com/JoseMiralles/RunChart/blob/main/GitHub/find-routes-snip.jpg)
+
+Whenever the bounds change, a new request is sent to the server, which returns routes filtered by name, and location. This only happens when the map comes to a complete stop.

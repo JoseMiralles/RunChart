@@ -51,4 +51,4 @@ The North East, and South West points of the map are then used as filters to onl
 
 ![Route Finder](https://github.com/JoseMiralles/RunChart/blob/main/GitHub/find-routes-snip.jpg)
 
-Whenever the bounds change, a new request is sent to the server, which returns routes filtered by name, and location. This only happens when the map comes to a complete stop.
+Whenever the bounds change, a new request is sent to the server, which returns routes filtered by name, and location. This only happens when the map comes to a complete stop. The SQL query is limited to only 10 routes per request, which means that the user has to zoom in to find specific results.

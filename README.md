@@ -11,6 +11,12 @@ RunChart allows users to create and search for running routes by using interacti
 
 <br />
 
+# Stack
+- **Front-end**: React, with Redux.
+- **Back-end**: Rails, and PostgreSQL.
+
+<br/>
+
 # How are routes stored in the back end?
 
 Routes are encoded into strings.

@@ -77,6 +77,30 @@ Route.create!([
     route: "y_owFbtrbMmADoAk@iMmFyImDdEsPrAwFv@oDpBqJ^QbAPdGfDxBtA~CdAlQ}@lDtj@_Gz@aSvA",
     start_lat: 40.714365571297485,
     start_lng: -73.99250265739565
+    },
+    {creator_id: users[3].id,
+    name: "run around the lake",
+    route: "}u|wF~umbM}AS}@LgCx@oAPoAEoAWaAs@eA_Ay@iAq@mAa@sAe@cCy@qBsAq@cAFo@Dy@E}@c@i@q@aAkCcBcBfBcF~BiE|@qDNcBV_BfBeF^Er@k@b@a@f@Of@Gl@FhAXx@Bn@C|@Cj@Ld@TxHzExJrGpFtDh@d@Xr@J~@EnBMtAAb@Dd@Yt@o@r@s@f@{@TeBXw@x@k@bB_@dBkAjG]zAm@rA",
+    start_lat: 40.714365571297485,
+    start_lng: -73.99250265739565
+    },
+    {creator_id: users[0].id,
+    name: "steps run",
+    route: "gv{wFruobMmWsPeFpPcKoGkFvPaGyDmEhNzB`BnA^vAVnCDtEXrA^rCfCxAjB`DzCbBhB`BbBpCt@lRcm@",
+    start_lat: 40.714365571297485,
+    start_lng: -73.99250265739565
+    },
+    {creator_id: users[1].id,
+    name: "steps run",
+    route: "_ezwFxuobMrCsFlEiIPZR\l@r@p@f@nBjAhClAfAl@r@hABdBa@pC_AnCmA|B{AbB{Al@gASaBeAqAqAgAsAy@gAo@gAkAqB",
+    start_lat: 40.714365571297485,
+    start_lng: -73.99250265739565
+    },
+    {creator_id: users[2].id,
+    name: "fun triangle",
+    route: "}l{wFzrpbMvq@jd@dNkb@{@m@Yh@[Ra@Ca@EOWwz@m@",
+    start_lat: 40.714365571297485,
+    start_lng: -73.99250265739565
     }
 ])
 

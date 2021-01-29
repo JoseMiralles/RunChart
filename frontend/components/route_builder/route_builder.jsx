@@ -127,7 +127,7 @@ export default class RouteBuilder extends React.Component {
             center: {
                 lat: 40.78151480597849,
                 lng: -73.9667305095721
-            }, // San Francisco coords
+            }, // New York coords
             zoom: 14,
             disableDefaultUI: true,
             // zoomControl: true,

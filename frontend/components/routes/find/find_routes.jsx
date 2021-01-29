@@ -96,6 +96,8 @@ export default class FindRoutes extends React.Component {
 
             // Setup "idle" listener. This fires once the map stops moving.
             this.map.addListener("idle", this.performSearch);
+
+            this.performSearch();
         } );
     }
 

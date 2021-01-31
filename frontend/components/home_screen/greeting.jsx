@@ -25,8 +25,10 @@ const Greeting = (props) => {
                 </div>
                 <div>
                     <span>already a member?</span>
-                    <Link className="btn btn-outline inline" to="/login">Login</Link>
+                    <Link className="btn btn-outline-dark inline" to="/login">Login</Link>
                 </div>
+
+                <img id="hero-svg" src={window.greeting_hero_image} />
 
             </div>
 

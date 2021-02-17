@@ -88,11 +88,26 @@
 
 #hero-svg{
     position: absolute;
-    top: 31%;
-    left: -219px;
-    width: 133%;
+    top: 30%;
+    left: 15px;
+    width: 65%;
     z-index: 9999;
     pointer-events: none;
+
+    .cls-1,.cls-2,.cls-4,.cls-5,.cls-6{fill:none;stroke-miterlimit:10;}
+    .cls-1,.cls-2{stroke:#212121;}
+    .cls-1{stroke-width:7px;}
+    .cls-2,.cls-5{stroke-width:4px;}
+    .cls-3{fill:#212121;}
+    .cls-4{stroke:#6b6b6b;stroke-width:0.49px;}
+    .cls-5{stroke:#0f97d6;}.cls-6{stroke:#0f96d8;stroke-width:7.39px;}
+    .cls-7{fill:#0f97d6;}
+
+    // .cls-1,.cls-4{fill:none;stroke-miterlimit:10;}
+    // .cls-1{stroke:#212121;stroke-width:8px;}
+    // .cls-2{fill:#212121;}
+    // .cls-3{fill:#0f97d6;}
+    // .cls-4{stroke:#0f96d8;stroke-width:6px;}
 }
 
 .create-route-section{

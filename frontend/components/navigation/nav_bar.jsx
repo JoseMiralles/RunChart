@@ -7,27 +7,56 @@ export default class NavBar extends React.Component {
 
     constructor(props){
         super(props);
+
+        this.state = {
+            menuFolded: true,
+        };
+
+        this.handleMenuButtonClick = this.handleMenuButtonClick.bind(this);
     }
 
     render(){
+        let mobileClass = "";
+        let hiddenClass = "";
+        if (this.props.isMobile){
+            mobileClass = "mobile-menu";
+            if (this.state.menuFolded){
+                hiddenClass = "hidden";
+            }
+        }
         return(
-            <nav className="container">
+            <nav className={`container ${mobileClass}`}>
                 <div className="left">
                     <Link id="nav-logo" className="logo" to="/">
                         <i className="material-icons">near_me</i>
                         RunChart
                     </Link>
                 </div>
-                <div className="center">
+                <div className={`center ${hiddenClass}`}>
                     <Link to="/routes/new">Create Route</Link>
                     <Link to="/routes/find">Find Routes</Link>
                     <Link to="/my_routes">My Routes</Link>
                 </div>
-                <div className="right">
+                <div className={`right ${hiddenClass}`}>
                     <NavGreetingContainer/>
                 </div>
+
+                { this.props.isMobile &&
+                <button
+                onClick={ this.handleMenuButtonClick }
+                className="menu-button"
+                >
+                    <i className="material-icons">menu</i>
+                </button> }
+
             </nav>
         );
+    }
+
+    handleMenuButtonClick(){
+        this.setState({
+            menuFolded: !this.state.menuFolded
+        });
     }
 
 }

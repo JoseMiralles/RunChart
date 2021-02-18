@@ -18,7 +18,7 @@ const HomeScreen = (props) => {
                     <h1>BLAZE NEW TRAILS</h1>
                     <hr className="weird_line"></hr>
 
-                    <h3>CREATE YOUR OWN ROUTE</h3>
+                    <h3><i className="material-icons">architecture</i> CREATE YOUR OWN ROUTE</h3>
                     <p className="half">
                         Stay safe, plan logistics, and know the terrain.
                     </p>
@@ -41,7 +41,7 @@ const HomeScreen = (props) => {
                     <h1>EXPLORE CITY ROUTES</h1>
                     <hr className="weird_line"></hr>
                     
-                    <h3>FIND NEW ROUTES</h3>
+                    <h3>FIND NEW ROUTES <i className="material-icons">search</i></h3>
                     <p className="half">
                         Search specifics, find popular routes, and save your favorites.
                     </p>

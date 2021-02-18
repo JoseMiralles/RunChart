@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import Footer from "./footer";
 import HomeScreenContainer from "./home_screen/home_screen_container";
-import NavBar from "./navigation/nav_bar";
 import RouteShowContainer from "./routes/show/route_show_container";
 import RouteEditorContainer from "./route_builder/route_editor_container";
 import RouteBuilderContainer from "./route_builder/route_builder_container";
@@ -12,10 +11,11 @@ import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import FindRoutesContainer from "./routes/find/find_routes_container";
 import MyRoutesContainer from "./routes/user/my_routes_container";
+import NavBarContainer from "./navigation/nav_bar_container";
 
 const App = () => (
     <>
-        <NavBar />
+        <NavBarContainer />
 
         <Route exact path="/" component={HomeScreenContainer} />
 

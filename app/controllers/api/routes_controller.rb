@@ -1,5 +1,7 @@
 class Api::RoutesController < ApplicationController
 
+    before_action :require_logged_in, except: :show
+
     def create
         @route = Route.new(route_params);
 
@@ -17,6 +19,11 @@ class Api::RoutesController < ApplicationController
 
     def update
         @route = Route.find(params[:id]);
+
+        if @route.creator_id != current_user.id
+            render json: ["UNAUTHORIZED"];
+            return
+        end
 
         if @route.update(route_params)
             render "api/routes/show"
@@ -37,6 +44,12 @@ class Api::RoutesController < ApplicationController
 
     def destroy
         @route = Route.find(params[:id])
+
+        if @route.creator_id != current_user.id
+            render json: ["UNAUTHORIZED"];
+            return
+        end
+
         if @route.destroy
             render :show
         else

@@ -1,4 +1,7 @@
 class Api::BookmarksController < ApplicationController
+
+  before_action :require_logged_in
+
   def index
     user = User.find(params[:user_id])
     @routes = user.bookmarked_routes
@@ -21,9 +24,10 @@ class Api::BookmarksController < ApplicationController
     @bookmark = Bookmark.find_by(user_id: current_user.id, route_id: params[:id])
 
     # Check if the current user is the owner of the bookmark.
-    # if @bookmark.user_id != current_user.id
-    #   render json: "Denied"
-    # end
+    if @bookmark.user_id != current_user.id
+      render json: "UNAUTHORIZED"
+      return
+    end
 
     if @bookmark.destroy
       render json: @bookmark

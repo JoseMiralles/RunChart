@@ -20,7 +20,6 @@ export default class BookmarkLink extends React.Component {
         return(
             <button onClick={this.addToBookMarks} className="flex-horizontal">
                 <i className="material-icons">bookmark_border</i>
-                Bookmark
             </button>
         );
 
@@ -28,7 +27,6 @@ export default class BookmarkLink extends React.Component {
         return(
             <button onClick={this.removeFromBookmarks} className="flex-horizontal">
                 <i className="material-icons">bookmark</i>
-                Un-Bookmark
             </button>
         );
     }

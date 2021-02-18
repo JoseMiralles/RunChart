@@ -12,12 +12,19 @@ import Root from "./components/root";
 import * as routeAPI from "./util/routes_api_util";
 window.routeAPI = routeAPI;
 import * as routeActions from "./actions/routes_actions";
+import { setIsMobile } from "./actions/styles_actions";
 window.routeActions = routeActions;
 
 document.addEventListener("DOMContentLoaded", () => {
 
     const mainColor = document.defaultView.getComputedStyle(document.querySelector("#styles-store")).color;
-    const store = generateStore(mainColor);
+    const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+    const store = generateStore(mainColor, isMobile);
+
+    const token = document.querySelector("[name=csrf-token]").content;
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': token }
+    });
 
     // Remove on production
     window.store = store;
@@ -27,13 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("root")
     );
 
+    window.addEventListener("resize", ()=>{
+        const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        store.dispatch( setIsMobile(isMobile) );
+    });
+
 });
 
-const generateStore = (mainColor) => {
+const generateStore = (mainColor, isMobile) => {
     let store;
     let preloadedState = {
         styles: {
-            mainColor: mainColor
+            mainColor,
+            isMobile
         }
     };
     if (window.currentUser) {

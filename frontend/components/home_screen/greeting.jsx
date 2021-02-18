@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DemoButtonContainer from "../session/demo_button_container";
+import HeroSVG from "./hero_svg";
 
 const Greeting = (props) => {
     return (
@@ -28,7 +29,9 @@ const Greeting = (props) => {
                     <Link className="btn btn-outline-dark inline" to="/login">Login</Link>
                 </div>
 
-                <img id="hero-svg" src={window.greeting_hero_image} />
+                { <HeroSVG/> }
+
+                {/* <img id="hero-svg" src={window.greeting_hero_image} /> */}
 
             </div>
 

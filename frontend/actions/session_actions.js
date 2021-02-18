@@ -31,7 +31,10 @@ export const login = (userForm) => (dispatch) => (
 
 export const logout = () => (dispatch) => (
     utils.logout().then(() => dispatch(logoutCurrentUser()))
-    .fail( ({responseJSON}) => dispatch(receiveSessionErrors(responseJSON)) )
+    .fail( (response) => {
+        if (response.status === 401) dispatch(logoutCurrentUser());
+        return dispatch(receiveSessionErrors(response.responseJSON))
+    })
 );
 
 export const signup = (userForm) => (dispatch) => (

@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
     const store = generateStore(mainColor, isMobile);
 
+    const token = document.querySelector("[name=csrf-token]").content;
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': token }
+    });
+
     // Remove on production
     window.store = store;
     

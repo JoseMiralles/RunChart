@@ -1,4 +1,7 @@
 class Api::UserController < ApplicationController
+
+  protect_from_forgery except: [:create, :show]
+
   def create
     @user = User.new(user_params)
 
@@ -22,4 +25,5 @@ class Api::UserController < ApplicationController
       :username, :email, :first_name, :last_name, :password
       )
   end
+
 end

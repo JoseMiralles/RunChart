@@ -25,10 +25,10 @@ export default class MyRoutes extends React.Component {
 
                 <ul onClick={this.tabSelected} className="tabs">
                     <li
-                    className={selected === this.flags.user && "selected"}
+                    className={selected === this.flags.user ? "selected" : ""}
                     action={this.flags.user}>Routes</li>
                     <li
-                    className={selected === this.flags.bookmarks && "selected"}
+                    className={selected === this.flags.bookmarks ? "selected" : ""}
                     action={this.flags.bookmarks}>Bookmarked</li>
                     <li className='line'></li>
                 </ul>

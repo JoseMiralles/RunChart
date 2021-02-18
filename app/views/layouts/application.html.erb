@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>RunChart</title>
 
     <%# Add the following: &libraries=places %>
@@ -11,8 +12,16 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property='og:title' content='RunChart'/>
+    <meta property='og:image' content='<%= image_path('meta-image.png') %>'/>
+    <meta property='og:description' content='Create and find running routes.'/>
+    <meta property='og:url' content='https://run-chart.herokuapp.com/'/>
+
+    <link rel="icon" type="image/png" href="<%= image_path('favicon.png') %>">
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>

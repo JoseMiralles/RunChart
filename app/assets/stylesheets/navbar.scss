@@ -1,4 +1,5 @@
 nav {
+
     display: flex;
     justify-content: space-between; // Spaces horizontally
     align-items: center; // Centers vertically
@@ -76,6 +77,14 @@ nav {
         *{
             margin-right: 10px;
         }
+    }
+
+    @media (max-width: 760px) {
+        z-index: 999;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        background: $light;
     }
 
 }

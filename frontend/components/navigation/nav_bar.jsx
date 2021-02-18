@@ -13,6 +13,7 @@ export default class NavBar extends React.Component {
         };
 
         this.handleMenuButtonClick = this.handleMenuButtonClick.bind(this);
+        this.closeMenu = this.closeMenu.bind(this);
     }
 
     render(){
@@ -32,12 +33,16 @@ export default class NavBar extends React.Component {
                         RunChart
                     </Link>
                 </div>
-                <div className={`center ${hiddenClass}`}>
+                <div className={`center ${hiddenClass}`}
+                    onClick = { !this.state.menuFolded ? this.closeMenu : undefined }
+                    >
                     <Link to="/routes/new">Create Route</Link>
                     <Link to="/routes/find">Find Routes</Link>
                     <Link to="/my_routes">My Routes</Link>
                 </div>
-                <div className={`right ${hiddenClass}`}>
+                <div className={`right ${hiddenClass}`}
+                    onClick = { !this.state.menuFolded ? this.closeMenu : undefined }
+                    >
                     <NavGreetingContainer/>
                 </div>
 
@@ -51,6 +56,12 @@ export default class NavBar extends React.Component {
 
             </nav>
         );
+    }
+
+    closeMenu(){
+        this.setState({
+            menuFolded: true
+        });
     }
 
     handleMenuButtonClick(){

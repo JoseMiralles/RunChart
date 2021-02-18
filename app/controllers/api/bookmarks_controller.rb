@@ -25,7 +25,7 @@ class Api::BookmarksController < ApplicationController
 
     # Check if the current user is the owner of the bookmark.
     if @bookmark.user_id != current_user.id
-      render json: "UNAUTHORIZED"
+      render json: "UNAUTHORIZED", status: 401
       return
     end
 

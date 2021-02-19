@@ -13,6 +13,10 @@
         // border-radius: 3px;
     }
 
+    @media (max-width: 760px){
+        margin-top: 55px;
+    }
+
 }
 
 .title-and-searchbox, .search-map-wrapper{

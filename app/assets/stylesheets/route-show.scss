@@ -58,6 +58,12 @@
 
 @media only screen and (max-width: 600px){
     .route-show-stats-container {
-        padding: 7px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 760px){
+    .route-show-container {
+        padding-top: 55px;
     }
 }

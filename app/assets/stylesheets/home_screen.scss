@@ -10,6 +10,7 @@
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 5px;
+        line-height: 29px;
     }
 
     .inner {
@@ -149,5 +150,12 @@
     
     .weird_line{
         border-color: $dark;
+    }
+}
+
+@media (max-width: 760px){
+    .inner{
+        align-items: center !important;
+        text-align: center;
     }
 }

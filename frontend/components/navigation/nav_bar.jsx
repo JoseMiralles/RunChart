@@ -51,7 +51,9 @@ export default class NavBar extends React.Component {
                 onClick={ this.handleMenuButtonClick }
                 className="menu-button"
                 >
-                    <i className="material-icons">menu</i>
+                    <i className="material-icons">
+                        { this.state.menuFolded ? "menu" : "close" }
+                    </i>
                 </button> }
 
             </nav>

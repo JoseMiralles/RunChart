@@ -28,7 +28,7 @@ const App = () => (
 
             {/* Redirect user to signup page if they are aren't logged in. */}
             <ProtectedRoute exact path="/routes/new" component={RouteBuilderContainer} />
-            <ProtectedRoute exact path="/routes/find" component={FindRoutesContainer} />
+            <Route exact path="/routes/find" component={FindRoutesContainer} />
 
             <ProtectedRoute exact path="/routes/:routeId/edit" component={RouteEditorContainer} />
 

@@ -6,9 +6,10 @@ class Route < ApplicationRecord
         foreign_key: :creator_id,
         class_name: :User
 
-    has_many :favorite_users,
+    has_many :bookmarks,
         foreign_key: :route_id,
-        class_name: :Bookmark
+        class_name: :Bookmark,
+        :dependent => :delete_all
 
     # Gets all of the routes withing the given South-West, and North-East points.
     def self.get_filtered (filters)
@@ -16,7 +17,7 @@ class Route < ApplicationRecord
             .where("start_lat > ?", filters[:bounds][:southWest][:lat])
             .where("start_lng > ?", filters[:bounds][:southWest][:lng])
             .where("start_lng < ?", filters[:bounds][:northEast][:lng])
-            .limit(10)
+            # .limit(10)
         if filters.key?(:name)
             res = res.where("name LIKE ?", "%#{filters[:name]}%")
         end

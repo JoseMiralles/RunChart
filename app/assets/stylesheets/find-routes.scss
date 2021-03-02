@@ -19,6 +19,11 @@
 
 }
 
+.routes-table{
+    overflow-y: scroll;
+    max-height: 75vh;
+}
+
 .title-and-searchbox, .search-map-wrapper{
     .btn {
         border: solid 1px $main-color;

@@ -3,17 +3,17 @@ import ReactDOM from "react-dom";
 
 import configureStore from "./store/store";
 import Root from "./components/root";
+import { setIsMobile } from "./actions/styles_actions";
 
 // Remove on production
 // import * as SessionApiUtil from "./util/session_api_util";
 // window.SessionApiUtil = SessionApiUtil;
 // import * as sessionActions from "./actions/session_actions";
 // window.sessionActions = sessionActions;
-import * as routeAPI from "./util/routes_api_util";
-window.routeAPI = routeAPI;
-import * as routeActions from "./actions/routes_actions";
-import { setIsMobile } from "./actions/styles_actions";
-window.routeActions = routeActions;
+// import * as routeAPI from "./util/routes_api_util";
+// window.routeAPI = routeAPI;
+// import * as routeActions from "./actions/routes_actions";
+// window.routeActions = routeActions;
 
 document.addEventListener("DOMContentLoaded", () => {
 

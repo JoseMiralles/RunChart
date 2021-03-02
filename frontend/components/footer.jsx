@@ -13,10 +13,10 @@ export default class Footer extends React.Component {
                     <h4>RunChart</h4>
                     <ul>
                         <li>
-                            <a href="https://github.com/JoseMiralles/final-project">Source Code</a>
+                            <a target="_blank" href="https://github.com/JoseMiralles/final-project">Source Code</a>
                         </li>
                         <li>
-                            <a href="https://github.com/JoseMiralles/final-project/wiki">Project Wiki</a>
+                            <a target="_blank" href="https://github.com/JoseMiralles/final-project/wiki">Project Wiki</a>
                         </li>
                     </ul>
                 </div>
@@ -24,16 +24,16 @@ export default class Footer extends React.Component {
                     <h4>Jose Miralles</h4>
                     <ul>
                         <li>
-                            <a href="https://josemiralles.github.io/">Personal Site</a>
+                            <a target="_blank" href="https://josemiralles.github.io/">Personal Site</a>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/josemiralles/">Linked In</a>
+                            <a target="_blank" href="https://www.linkedin.com/in/josemiralles/">Linked In</a>
                         </li>
                         <li>
-                            <a href="https://github.com/JoseMiralles">GitHub</a>
+                            <a target="_blank" href="https://github.com/JoseMiralles">GitHub</a>
                         </li>
                         <li>
-                            <a href="https://stackoverflow.com/users/2895137/jose-miralles">Stack Overflow</a>
+                            <a target="_blank" href="https://stackoverflow.com/users/2895137/jose-miralles">Stack Overflow</a>
                         </li>
                     </ul>
                 </div>

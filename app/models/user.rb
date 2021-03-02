@@ -10,11 +10,13 @@ class User < ApplicationRecord
 
     has_many :routes,
       foreign_key: :creator_id,
-      class_name: :Route
+      class_name: :Route,
+      :dependent => :delete_all
 
     has_many :bookmarks,
       foreign_key: :user_id,
-      class_name: :Bookmark
+      class_name: :Bookmark,
+      :dependent => :delete_all
     
     has_many :bookmarked_routes,
       through: :bookmarks,

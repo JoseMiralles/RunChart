@@ -6,6 +6,9 @@ import HeroSVG from "./hero_svg";
 const Greeting = (props) => {
     return (
         <div className="greeting-section">
+
+            <div className="top_image"></div>
+
             <div className="inner">
                 
                 <hr className="weird_line"></hr>

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Remove on production
-    window.store = store;
+    // window.store = store;
     
     ReactDOM.render(
         <Root store={store} />,

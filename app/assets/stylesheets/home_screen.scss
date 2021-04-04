@@ -24,6 +24,7 @@
 
         h1{
             margin-bottom: 25px;
+            z-index: 1;
         }
     }
 
@@ -63,8 +64,15 @@
     color: $dark;
     max-width: 100%;
 
+    .top_image{
+        background: linear-gradient(0deg, $light, transparentize($light, 1)), url(asset-path("light_map.jpg"));
+        height: 150px;
+        width: 100%;
+        position: absolute;
+    }
+
     .inner {
-        padding-top: 100px;
+        padding-top: 175px;
         padding-bottom: 150px;
         align-items: flex-end;
         width: -webkit-fill-available;
@@ -86,6 +94,7 @@
     
     .weird_line{
         border-color: $dark;
+        z-index: 1;
     }
 
 }
